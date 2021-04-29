@@ -15,6 +15,9 @@ public:
     Wav_Processor(QWidget *parent = nullptr);
     ~Wav_Processor();
 
+private slots:
+    void on_FileButton_clicked();
+
 private:
     Ui::Wav_Processor *ui;
 };
