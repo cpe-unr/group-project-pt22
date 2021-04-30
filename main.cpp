@@ -1,6 +1,11 @@
 /** @file */
 #include <iostream>
+#include "WavFile.h"
+#include "Sorting.h"
+#include <string>
+#include <vector>
 
+using namespace std;
 /**
  * \brief   The function bar.
  *
@@ -21,11 +26,33 @@
  * \retval        ERR_SUCCESS    The function is successfully executed
  * \retval        ERR_FAILURE    An error occurred
  */
-void fn(){
 
-}
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    string filename = "yes-8-bit-stereo.wav";
+    Sorting sort;
+    int byte = 8;
+	byte = sort.filter(filename);
+
+    if(byte == 8)
+    	{
+    		auto* wav = new WavFile<unsigned char>();
+    		wav->readFile(filename);
+    		//std::cout << wav->waveHeader.num_channels << endl;
+    		delete wav;
+    	}
+    	else if(byte == 16)
+    	{
+    		auto* wav = new WavFile<signed short>();
+    		wav->readFile(filename);
+    		delete wav;
+    	}
+    	else if(byte == 32)
+    	{
+    		auto* wav = new WavFile<signed int>();
+    		wav->readFile(filename);
+    		delete wav;
+    	}
+
     return 0;
 }
