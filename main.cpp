@@ -3,6 +3,7 @@
 #include "user_interface.h"
 
 #include <QApplication>
+#include "filemanager.h"
 /**
  * \brief   The function bar.
  *
@@ -32,7 +33,7 @@ int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     Wav_Processor w, s;
     w.show();
-
+    FileManager FM(".wav");
 
     return a.exec();
 }
