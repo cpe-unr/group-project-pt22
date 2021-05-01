@@ -11,10 +11,12 @@ CONFIG += c++11
 SOURCES += \
     filemanager.cpp \
     main.cpp \
+    puimanager.cpp \
     user_interface.cpp
 
 HEADERS += \
     filemanager.h \
+    puimanager.h \
     user_interface.h
 
 FORMS += \

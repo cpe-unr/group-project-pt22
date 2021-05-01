@@ -31,9 +31,9 @@ void fn(){
 int main(int argc, char *argv[]) {
 
     QApplication a(argc, argv);
-    Wav_Processor w, s;
+    FileManager *FM = new FileManager();
+    Wav_Processor w(nullptr, FM);
     w.show();
-    FileManager FM(".wav");
 
     return a.exec();
 }
