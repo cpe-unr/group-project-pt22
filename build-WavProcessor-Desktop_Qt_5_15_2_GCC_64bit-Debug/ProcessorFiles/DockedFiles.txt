@@ -1,3 +1,1 @@
-
-/home/pearson/CS202/Team/group-project-pt22/build-WavProcessor-Desktop_Qt_5_15_2_GCC_64bit-Debug/filemanager.o
-/home/pearson/CS202/Team/group-project-pt22/build-WavProcessor-Desktop_Qt_5_15_2_GCC_64bit-Debug/mainUI.o
+/home/pearson/CS202/yes-8-bit-stereo.wav

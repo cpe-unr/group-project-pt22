@@ -42,15 +42,34 @@ void FileManager::createFile(QString Directory, QString FileName)
 
 }
 
-void FileManager::saveFilePath(QFile &writeFile, QString filePath)
+bool FileManager::saveFilePath(QFile &writeFile, QString filePath, QString fileType)
 {
-    if(writeFile.open(QFile::ReadWrite | QFile::Append))
+    QString type;
+
+    int fileTypeIdx = filePath.size() - fileType.size();
+    for(int i = fileTypeIdx; i < filePath.size(); i++)
     {
-        QTextStream out(&writeFile);
-        out << filePath << "\n";
-        writeFile.flush();
-        writeFile.close();
+        type += filePath[i];
     }
+    if(type == fileType)
+    {
+        if(writeFile.open(QFile::ReadWrite | QFile::Append))
+        {
+            QTextStream out(&writeFile);
+            out << filePath << "\n";
+            writeFile.flush();
+            writeFile.close();
+        }
+        return true;
+   }
+   else
+   {
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","File is not of type '.wav'");
+        messageBox.setFixedSize(500,200);
+        return false;
+   }
+
 }
 
 std::vector<QString> FileManager::getFilePaths()
@@ -90,6 +109,58 @@ void FileManager::setFilePaths(const std::vector<QString> &paths)
     {
         filePaths.push_back(str);
     }
+}
 
+void FileManager::removeFilePathFromFile(QFile& file, QString fileName)
+{
+
+    std::vector<QString> pathStorage;
+
+    if(file.open(QIODevice::ReadOnly))
+    {
+
+        QTextStream in(&file);
+
+        while(!in.atEnd())
+        {
+            QString line = in.readLine();
+            QString tempName;
+            if(line != "")
+            {
+
+                int idx = line.size() - fileName.size();
+
+                qDebug() << idx << " : " << line << " : " << fileName;
+                for(int i = idx; i < line.size(); i++)
+                {
+                    tempName += line[i];
+                }
+                qDebug() << tempName;
+                if(tempName != fileName)
+                {
+                    pathStorage.push_back(line);
+                }
+
+
+             }
+        }
+        file.close();
+
+    }
+
+    if(file.open(QIODevice::WriteOnly | QFile::Truncate))
+    {
+
+        QTextStream out(&file);
+        for(QString str : pathStorage)
+        {
+            out << str << "\n";
+        }
+
+        file.flush();
+        file.close();
+
+        file.close();
+     }
 
 }

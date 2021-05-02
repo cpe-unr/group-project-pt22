@@ -17,7 +17,7 @@ public:
 
     void createFile(QString Directory, QString FileName);
 
-    void saveFilePath(QFile &writeFile, QString filePath);
+    bool saveFilePath(QFile &writeFile, QString filePath, QString fileType);
 
     std::vector<QString> getFilePaths();
 
@@ -26,6 +26,7 @@ public:
     QString readFileNameFromFP(QString filePath);
     void setFilePaths(const std::vector<QString> &paths);
     void addFilePath(QString newPath);
+    void removeFilePathFromFile(QFile& file, QString fileName);
 };
 
 #endif // FILEMANAGER_H
