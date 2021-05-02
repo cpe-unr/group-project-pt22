@@ -9,7 +9,7 @@
 class FileManager
 {
 private:
-    std::vector<QString> filePaths;
+    std::vector<QFile*> files;
     QString proccessorDirectory;
     QDir directory; //directory to save files to
 public:
@@ -19,13 +19,13 @@ public:
 
     bool saveFilePath(QFile &writeFile, QString filePath, QString fileType);
 
-    std::vector<QString> getFilePaths();
+    std::vector<QFile*> getFiles();
+    void setFiles(const std::vector<QString> &paths);
 
 
     std::vector<QString> readFileLines(QFile &file);
     QString readFileNameFromFP(QString filePath);
-    void setFilePaths(const std::vector<QString> &paths);
-    void addFilePath(QString newPath);
+    //void addFilePath(QString newPath);
     void removeFilePathFromFile(QFile& file, QString fileName);
 };
 

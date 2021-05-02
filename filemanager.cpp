@@ -3,6 +3,7 @@
 #include <QDirIterator>
 #include <QMessageBox>
 #include <QTextStream>
+
 FileManager::FileManager()
 {
     if(!QDir("ProcessorFiles").exists())
@@ -72,9 +73,9 @@ bool FileManager::saveFilePath(QFile &writeFile, QString filePath, QString fileT
 
 }
 
-std::vector<QString> FileManager::getFilePaths()
+std::vector<QFile*> FileManager::getFiles()
 {
-    return filePaths;
+    return files;
 }
 
 std::vector<QString> FileManager::readFileLines(QFile &file)
@@ -102,12 +103,13 @@ QString FileManager::readFileNameFromFP(QString filePath)
     return fileName;
 }
 
-void FileManager::setFilePaths(const std::vector<QString> &paths)
+void FileManager::setFiles(const std::vector<QString> &paths)
 {
-    filePaths.clear();
-    for(QString str : paths)
+    files.clear();
+    for(const QString&  str : paths)
     {
-        filePaths.push_back(str);
+        QFile* newFP = new QFile(str);
+        files.push_back(newFP);
     }
 }
 
@@ -164,3 +166,4 @@ void FileManager::removeFilePathFromFile(QFile& file, QString fileName)
      }
 
 }
+

@@ -3,7 +3,9 @@
 #include <QTextStream>
 #include <QtDebug>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QtMultimedia/QSound>
+#include <QFile>
 Wav_Processor::Wav_Processor(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::Wav_Processor)
 {
@@ -25,20 +27,19 @@ Wav_Processor::Wav_Processor(QWidget *parent, FileManager *fileManager) : QMainW
 Wav_Processor::~Wav_Processor()
 {
     delete ui;
+    delete fileM;
 }
 
 void Wav_Processor::updateFileList()
 {
     ui->DockedFiles->clear();
     QFile newFile(QDir("ProcessorFiles").path() + "/" + "DockedFiles.txt");
-    std::vector<QString> test = fileM->readFileLines(newFile);
-    fileM->setFilePaths(test);
+    std::vector<QString> FPs(fileM->readFileLines(newFile));
 
-    std::vector<QString> TempPaths = fileM->getFilePaths();
-
-    for(QString str : TempPaths)
+    fileM->setFiles(FPs);
+    for(const QString& tempFilePath : FPs)
     {
-        ui->DockedFiles->addItem(fileM->readFileNameFromFP(str));
+        ui->DockedFiles->addItem(fileM->readFileNameFromFP(tempFilePath));
     }
 }
 
@@ -138,6 +139,11 @@ void Wav_Processor::on_ApplyMetadataButton_clicked()
 
 void Wav_Processor::on_PlayButton_clicked()
 {
-    //QString path = SelectedDockedItem->text();
-    QSound::play("/home/pearson/CS202/yes-8-bit-stereo.wav");
+   int currentIdx = ui->DockedFiles->row(SelectedDockedItem);
+   QFileInfo info;
+   std::vector<QFile*> outFile = fileM->getFiles();
+
+   info.setFile(*outFile.at(currentIdx));
+   qDebug() << info.filePath();
+   QSound::play(info.filePath());
 }
