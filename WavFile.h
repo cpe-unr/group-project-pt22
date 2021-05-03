@@ -4,46 +4,105 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <vector>
+#include <cstring>
 #include "WavStructure.h"
+#include "MetaStructure.h"
+#include "MetaDataHeader.h"
+
 using namespace std;
 
-template <typename T>
 class WavFile
 {
 public:
-	T *getBuffer()
-	{
-		return buffer;
-	}
 
 	int getBufferSize() const
 	{
 		return waveHeader.data_bytes;
 	}
 
-	void readFile(const string &filePath)
+	void getMetaData(ifstream &file)
 	{
-		ifstream file(filePath, ios::binary | ios::in);
-		if(file.is_open())
+		int i = 0;
+
+
+		file.read((char*)&metaHeader,sizeof(metaDataHeader));
+		i += 4;
+		do
 		{
-			file.read((char*)&waveHeader, sizeof(wavStructure));
-			buffer = new T[waveHeader.data_bytes];
-			file.read((char*)buffer, waveHeader.data_bytes);
-			file.close();
+			auto* temp = new metaStructure;
+			file.read((char*)temp,sizeof(metaStructure));
+
+			i += 8;
+			i+=temp->numChunkByte;
+
+			char dataTemp[temp->numChunkByte];
+			file.read((char*)&dataTemp,sizeof(dataTemp));
+
+			string metaChunk = dataTemp;
+			metaStruc.push_back(temp);
+			metaChunk_value.push_back(metaChunk);
+		}while(i < metaHeader.totalByte);
+
+	}
+	void changeMetaData(const string &iName, const string &metaInfo)
+	{
+		string tempS;
+		int i;
+		for(i = 0; i < 1; i++)
+		{
+			tempS = "";
+			for(int a = 0; a < sizeof(metaStruc[i]->metaDataChunk);a++)
+			{
+				if(metaStruc[i]->metaDataChunk[a] >= 'A' && metaStruc[i]->metaDataChunk[a] <= 'Z')
+				{
+					tempS += metaStruc[i]->metaDataChunk[a];
+				}
+				else if(metaStruc[i]->metaDataChunk[a] >= 'a' && metaStruc[i]->metaDataChunk[a] <='z')
+				{
+					tempS += metaStruc[i]->metaDataChunk[a] - 32;
+				}
+			}
+
+			if(tempS == iName)
+			{
+				metaStruc[i]->numChunkByte = metaInfo.length();
+				metaChunk_value[i] = metaInfo;
+				return;
+			}
+		}
+
+		auto* temp = new metaStructure;
+
+		strcpy(temp->metaDataChunk,iName.c_str());
+		temp->numChunkByte = metaInfo.length();
+		metaChunk_value.push_back(metaInfo);
+		metaStruc.push_back(temp);
+
+	}
+	void writeMetaData(ofstream &file)
+	{
+		string temp = metaStruc[0]->metaDataChunk;
+		file.write((char*)&metaHeader, sizeof(metaDataHeader));
+		for(int i = 0; i < metaStruc.size(); i++)
+		{
+			file.write((char*)metaStruc[i], sizeof(metaStructure));
+			file.write((char*)metaChunk_value[i].c_str(), metaStruc[i]->numChunkByte);
+			delete metaStruc[i];
 		}
 	}
 
-	void writeFile(const string &outFilePath)
-	{
-		ofstream file(outFilePath, ios::binary | ios::out);
-		file.write((char*)&waveHeader, sizeof(wavStructure));
-		file.write((char*)buffer, waveHeader.data_bytes);
-		file.close();
-	}
-private:
-	T* buffer = NULL;
+	virtual void readFile(const string &filePath) = 0;
+
+	virtual void writeFile(const string &outFilePath) = 0;
 	wavStructure waveHeader;
 
+
+private:
+	metaDataHeader metaHeader;
+	vector<metaStructure*> metaStruc;
+	vector<string> metaChunk_value;
 };
 
 #endif
+

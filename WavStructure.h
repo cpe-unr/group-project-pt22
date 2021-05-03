@@ -21,6 +21,7 @@ typedef struct wavStructure {
     char data_header[4]; // Contains "data"
     int data_bytes; // Number of bytes in data. Number of samples * num_channels * sample byte size
     // char bytes[]; // Remainder of wave file is bytes
+
 } wavStructure;
 
 #endif

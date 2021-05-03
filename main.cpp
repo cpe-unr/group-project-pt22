@@ -29,30 +29,23 @@ using namespace std;
 
 
 int main() {
-    string filename = "yes-8-bit-stereo.wav";
+    string names[1];
+    names[0] = "yes-8bit-mono.wav";
+    //names[1] = "yes-8-bit-stereo.wav";
+    //names[2] = "yes-16-bit-mono.wav";
+    //names[3] = "yes-26-bit-stereo.wav";
     Sorting sort;
-    int byte = 8;
-	byte = sort.filter(filename);
+    vector<WavFile*> files;
 
-    if(byte == 8)
-    	{
-    		auto* wav = new WavFile<unsigned char>();
-    		wav->readFile(filename);
-    		//std::cout << wav->waveHeader.num_channels << endl;
-    		delete wav;
-    	}
-    	else if(byte == 16)
-    	{
-    		auto* wav = new WavFile<signed short>();
-    		wav->readFile(filename);
-    		delete wav;
-    	}
-    	else if(byte == 32)
-    	{
-    		auto* wav = new WavFile<signed int>();
-    		wav->readFile(filename);
-    		delete wav;
-    	}
+
+    for(auto filename : names)
+    {
+    	sort.filter(filename, files);
+    }
+    files[0]->changeMetaData("INAM", "temp");
+    files[0]->changeMetaData("IPRD", "1999");
+    files[0]->writeFile(names[0]);
+
 
     return 0;
 }
