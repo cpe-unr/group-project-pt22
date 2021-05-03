@@ -4,6 +4,7 @@
 
 #include <QApplication>
 #include "filemanager.h"
+
 /**
  * \brief   The function bar.
  *

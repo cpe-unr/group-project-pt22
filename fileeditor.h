@@ -13,7 +13,7 @@ public:
     template<typename T>
     void applyProcess(T processor, unsigned char* buffer, int bufferSize);
 
-    void changeMetadata()
+    void changeMetadata();
 };
 
 #endif // FILEEDITOR_H

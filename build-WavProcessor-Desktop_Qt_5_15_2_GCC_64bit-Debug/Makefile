@@ -52,12 +52,20 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../fileeditor.cpp \
+SOURCES       = ../16BitWav.cpp \
+		../32BitWav.cpp \
+		../8BitWav.cpp \
+		../Sorting.cpp \
+		../fileeditor.cpp \
 		../filemanager.cpp \
 		../main.cpp \
 		../puimanager.cpp \
 		../user_interface.cpp moc_user_interface.cpp
-OBJECTS       = fileeditor.o \
+OBJECTS       = 16BitWav.o \
+		32BitWav.o \
+		8BitWav.o \
+		Sorting.o \
+		fileeditor.o \
 		filemanager.o \
 		main.o \
 		puimanager.o \
@@ -240,10 +248,20 @@ DIST          = /home/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/exceptions.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/yacc.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/lex.prf \
-		../../WavProcessor.pro ../fileeditor.h \
+		../../WavProcessor.pro ../16BitWav.h \
+		../32BitWav.h \
+		../8BitWav.h \
+		../MetaDataHeader.h \
+		../MetaStructure.h \
+		../Sorting.h \
+		../fileeditor.h \
 		../filemanager.h \
 		../puimanager.h \
-		../user_interface.h ../fileeditor.cpp \
+		../user_interface.h ../16BitWav.cpp \
+		../32BitWav.cpp \
+		../8BitWav.cpp \
+		../Sorting.cpp \
+		../fileeditor.cpp \
 		../filemanager.cpp \
 		../main.cpp \
 		../puimanager.cpp \
@@ -631,8 +649,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../fileeditor.h ../filemanager.h ../puimanager.h ../user_interface.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../fileeditor.cpp ../filemanager.cpp ../main.cpp ../puimanager.cpp ../user_interface.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../16BitWav.h ../32BitWav.h ../8BitWav.h ../MetaDataHeader.h ../MetaStructure.h ../Sorting.h ../fileeditor.h ../filemanager.h ../puimanager.h ../user_interface.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../16BitWav.cpp ../32BitWav.cpp ../8BitWav.cpp ../Sorting.cpp ../fileeditor.cpp ../filemanager.cpp ../main.cpp ../puimanager.cpp ../user_interface.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Wav_Processor.ui $(DISTDIR)/
 	$(COPY_FILE) --parents WavProcessor_en_US.ts $(DISTDIR)/
 
@@ -825,7 +843,101 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-fileeditor.o: ../fileeditor.cpp ../fileeditor.h
+16BitWav.o: ../16BitWav.cpp ../16BitWav.h \
+		../WavFile.h \
+		../WavStructure.h \
+		../MetaStructure.h \
+		../MetaDataHeader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o 16BitWav.o ../16BitWav.cpp
+
+32BitWav.o: ../32BitWav.cpp ../32BitWav.h \
+		../WavFile.h \
+		../WavStructure.h \
+		../MetaStructure.h \
+		../MetaDataHeader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o 32BitWav.o ../32BitWav.cpp
+
+8BitWav.o: ../8BitWav.cpp ../WavFile.h \
+		../WavStructure.h \
+		../MetaStructure.h \
+		../MetaDataHeader.h \
+		../8BitWav.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o 8BitWav.o ../8BitWav.cpp
+
+Sorting.o: ../Sorting.cpp ../Sorting.h \
+		../WavFile.h \
+		../WavStructure.h \
+		../MetaStructure.h \
+		../MetaDataHeader.h \
+		../32BitWav.h \
+		../16BitWav.h \
+		../8BitWav.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Sorting.o ../Sorting.cpp
+
+fileeditor.o: ../fileeditor.cpp ../fileeditor.h \
+		../filemanager.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QFile \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringview.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qvector.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcontainertools_impl.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qpoint.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QDir \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QStringList
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fileeditor.o ../fileeditor.cpp
 
 filemanager.o: ../filemanager.cpp ../filemanager.h \

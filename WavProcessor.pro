@@ -10,6 +10,10 @@ QT += multimedia
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    16BitWav.cpp \
+    32BitWav.cpp \
+    8BitWav.cpp \
+    Sorting.cpp \
     fileeditor.cpp \
     filemanager.cpp \
     main.cpp \
@@ -17,6 +21,12 @@ SOURCES += \
     user_interface.cpp
 
 HEADERS += \
+    16BitWav.h \
+    32BitWav.h \
+    8BitWav.h \
+    MetaDataHeader.h \
+    MetaStructure.h \
+    Sorting.h \
     fileeditor.h \
     filemanager.h \
     puimanager.h \
