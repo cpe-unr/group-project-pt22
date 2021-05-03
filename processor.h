@@ -1,29 +1,14 @@
-//Alex Czarnomski
-//processor code based on prof's lecture demo
+#ifndef PROCESSOR_H
+#define PROCESSOR_H
 
-#include <iostream>
-#include <string>
 #include <vector>
-#include "FileManager.h"
+#include <string>
+#include <iostream>
 
-using namespace std;
-
-template <typename T, unsigned char* B[]>
-class IProcessor {
-
-	T buffer[] = B[];
-
+class Processor {
 public:
-
-	unsigned char* Echo(T buffer[]);
-	unsigned char* NoiseGate(T buffer[]);
-	unsigned char* Limiter(T buffer[]);
-	unsigned char* noProcess(T buffer[]);
-
+    virtual void processBuffer(unsigned char* buffer, int bufferSize) = 0;
 };
 
 
-
-
-
-
+#endif
