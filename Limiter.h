@@ -1,18 +1,18 @@
 #ifndef LIMITER_H
 #define LIMITER_H
 
-#include "Processor.h"
+#include "iProcessor.h"
 
 using namespace std;
 
-class Limiter : public Processor {
+class Limiter : public iProcessor {
 
 	int lim;
 
 public:
 
 	Limiter();
-	Limier(int lim);
+	Limiter(int lim);
 
 	void processBuffer(unsigned char* buffer, int bufferSize);
 

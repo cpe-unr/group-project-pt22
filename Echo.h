@@ -1,11 +1,11 @@
 #ifndef ECHO_H
 #define ECHO_H
 
-#include "Processor.h"
+#include "iProcessor.h"
 
 using namespace std;
 
-class Echo : public Processor {
+class Echo : public iProcessor {
 
 	int delay;
 

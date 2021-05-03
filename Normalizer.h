@@ -1,18 +1,18 @@
 #ifndef NORMALIZER_H
 #define NORMALIZER_H
 
-#include "Processor.h"
+#include "iProcessor.h"
 
 using namespace std;
 
-class Normalizer : public Processor {
+class Normalizer : public iProcessor {
 
-	int peak;
+	int nPercent;
 
 public:
 
 	Normalizer();
-	Normalizer(int peak);
+	Normalizer(int nPercent);
 
 	void processBuffer(unsigned char* buffer, int bufferSize);
 
