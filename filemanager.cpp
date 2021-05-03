@@ -132,12 +132,10 @@ void FileManager::removeFilePathFromFile(QFile& file, QString fileName)
 
                 int idx = line.size() - fileName.size();
 
-                qDebug() << idx << " : " << line << " : " << fileName;
                 for(int i = idx; i < line.size(); i++)
                 {
                     tempName += line[i];
                 }
-                qDebug() << tempName;
                 if(tempName != fileName)
                 {
                     pathStorage.push_back(line);

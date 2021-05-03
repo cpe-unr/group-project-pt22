@@ -52,11 +52,13 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../filemanager.cpp \
+SOURCES       = ../fileeditor.cpp \
+		../filemanager.cpp \
 		../main.cpp \
 		../puimanager.cpp \
 		../user_interface.cpp moc_user_interface.cpp
-OBJECTS       = filemanager.o \
+OBJECTS       = fileeditor.o \
+		filemanager.o \
 		main.o \
 		puimanager.o \
 		user_interface.o \
@@ -238,9 +240,11 @@ DIST          = /home/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/exceptions.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/yacc.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/lex.prf \
-		../../WavProcessor.pro ../filemanager.h \
+		../../WavProcessor.pro ../fileeditor.h \
+		../filemanager.h \
 		../puimanager.h \
-		../user_interface.h ../filemanager.cpp \
+		../user_interface.h ../fileeditor.cpp \
+		../filemanager.cpp \
 		../main.cpp \
 		../puimanager.cpp \
 		../user_interface.cpp
@@ -627,8 +631,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../filemanager.h ../puimanager.h ../user_interface.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../filemanager.cpp ../main.cpp ../puimanager.cpp ../user_interface.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../fileeditor.h ../filemanager.h ../puimanager.h ../user_interface.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../fileeditor.cpp ../filemanager.cpp ../main.cpp ../puimanager.cpp ../user_interface.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Wav_Processor.ui $(DISTDIR)/
 	$(COPY_FILE) --parents WavProcessor_en_US.ts $(DISTDIR)/
 
@@ -820,6 +824,9 @@ compiler_lex_clean:
 compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+fileeditor.o: ../fileeditor.cpp ../fileeditor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fileeditor.o ../fileeditor.cpp
 
 filemanager.o: ../filemanager.cpp ../filemanager.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QFile \
@@ -1322,6 +1329,7 @@ user_interface.o: ../user_interface.cpp ../user_interface.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QFileDialog \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qfiledialog.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QFileInfo \
 		../../../../Qt/5.15.2/gcc_64/include/QtMultimedia/QSound \
 		../../../../Qt/5.15.2/gcc_64/include/QtMultimedia/qsound.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
