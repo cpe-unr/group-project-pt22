@@ -7,8 +7,8 @@
 class BitWav32 : public WavFile
 {
 public:
-	void readFile(const string &filePath) override;
-	void writeFile(const string &outFilePath) override;
+    void readFile(const QString &filePath) override;
+    void writeFile(const QString &outFilePath) override;
 	signed int *getBuffer();
 
 private:

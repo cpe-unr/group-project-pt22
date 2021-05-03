@@ -7,9 +7,10 @@
 
 using namespace std;
 
-void BitWav16::readFile(const string &filePath)
+void BitWav16::readFile(const QString &filePath)
 {
-	ifstream file(filePath, ios::binary | ios::in);
+    string fp = filePath.toStdString();
+    ifstream file(fp, ios::binary | ios::in);
 	if(file.is_open())
 		{
 			file.read((char*)&waveHeader, sizeof(wavStructure));
@@ -20,9 +21,10 @@ void BitWav16::readFile(const string &filePath)
 		}
 }
 
-void BitWav16::writeFile(const string &outFilePath)
+void BitWav16::writeFile(const QString &outFilePath)
 {
-	ofstream file(outFilePath, ios::binary | ios::out);
+    string outfp = outFilePath.toStdString();
+    ofstream file(outfp, ios::binary | ios::out);
 	file.write((char*)&waveHeader, sizeof(wavStructure));
 	file.write((char*)BitWav16::buffer, waveHeader.data_bytes);
 	file.close();

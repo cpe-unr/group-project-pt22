@@ -14,6 +14,6 @@ private:
 	wavStructure waveHeader;
 	int bytes;
 public:
-	void filter(const std::string&, std::vector<WavFile*>&);
+    WavFile* filter(const QString&);
 };
 #endif

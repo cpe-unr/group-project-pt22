@@ -27,6 +27,8 @@ HEADERS += \
     MetaDataHeader.h \
     MetaStructure.h \
     Sorting.h \
+    WavFile.h \
+    WavStructure.h \
     fileeditor.h \
     filemanager.h \
     puimanager.h \

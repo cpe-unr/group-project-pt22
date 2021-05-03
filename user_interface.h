@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <filemanager.h>
 #include <QListWidgetItem>
+#include <fileeditor.h>
 QT_BEGIN_NAMESPACE
 namespace Ui { class Wav_Processor; }
 QT_END_NAMESPACE
@@ -12,6 +13,7 @@ class Wav_Processor : public QMainWindow
 {
     Q_OBJECT
     FileManager* fileM;
+    FileEditor edit;
     QListWidgetItem* SelectedDockedItem;
 public:
     Wav_Processor(QWidget *parent = nullptr);
@@ -35,6 +37,10 @@ private slots:
     void on_ApplyMetadataButton_clicked();
 
     void on_PlayButton_clicked();
+
+    void on_OpenButton_clicked();
+
+    void on_SaveButton_clicked();
 
 private:
     Ui::Wav_Processor *ui;

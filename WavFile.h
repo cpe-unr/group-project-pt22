@@ -9,7 +9,7 @@
 #include "WavStructure.h"
 #include "MetaStructure.h"
 #include "MetaDataHeader.h"
-
+#include <QString>
 using namespace std;
 
 class WavFile
@@ -45,9 +45,11 @@ public:
 		}while(i < metaHeader.totalByte);
 
 	}
-	void changeMetaData(const string &iName, const string &metaInfo)
+    void changeMetaData(const QString &iName, const QString &metaInfo)
 	{
-		string tempS;
+        string iN = iName.toStdString();
+        string mI = metaInfo.toStdString();
+        string tempS;
 		int i;
 		for(i = 0; i < 1; i++)
 		{
@@ -64,19 +66,19 @@ public:
 				}
 			}
 
-			if(tempS == iName)
+            if(tempS == iN)
 			{
-				metaStruc[i]->numChunkByte = metaInfo.length();
-				metaChunk_value[i] = metaInfo;
+                metaStruc[i]->numChunkByte = mI.length();
+                metaChunk_value[i] = mI;
 				return;
 			}
 		}
 
 		auto* temp = new metaStructure;
 
-		strcpy(temp->metaDataChunk,iName.c_str());
-		temp->numChunkByte = metaInfo.length();
-		metaChunk_value.push_back(metaInfo);
+        strcpy(temp->metaDataChunk,iN.c_str());
+        temp->numChunkByte = mI.length();
+        metaChunk_value.push_back(mI);
 		metaStruc.push_back(temp);
 
 	}
@@ -92,10 +94,10 @@ public:
 		}
 	}
 
-	virtual void readFile(const string &filePath) = 0;
+    virtual void readFile(const QString &filePath) = 0;
 
-	virtual void writeFile(const string &outFilePath) = 0;
-	wavStructure waveHeader;
+    virtual void writeFile(const QString &outFilePath) = 0;
+    wavStructure waveHeader;
 
 
 private:

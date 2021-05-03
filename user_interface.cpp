@@ -6,6 +6,7 @@
 #include <QFileInfo>
 #include <QtMultimedia/QSound>
 #include <QFile>
+#include <QMessageBox>
 Wav_Processor::Wav_Processor(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::Wav_Processor)
 {
@@ -46,20 +47,30 @@ void Wav_Processor::updateFileList()
 
 void Wav_Processor::on_FileButton_clicked()
 {
-        ui->FileEditLayout->setVisible(false);
-        ui->FileDockLayoutWidget->setVisible(true);
-        ui->EditMetadataButton->setVisible(false);
-        ui->PlayButton->setVisible(true);
-        ui->DockedFiles->clear();
-        updateFileList();
+    //if(edit.getChangesMade()) return;
+
+    ui->FileEditLayout->setVisible(false);
+    ui->FileDockLayoutWidget->setVisible(true);
+    ui->EditMetadataButton->setVisible(false);
+    ui->PlayButton->setVisible(true);
+    ui->DockedFiles->clear();
+    updateFileList();
 }
 
 void Wav_Processor::on_EditButton_clicked()
 {
-        ui->FileDockLayoutWidget->setVisible(false);
-        ui->FileEditLayout->setVisible(true);
-        ui->PlayButton->setVisible(false);
-        ui->EditMetadataButton->setVisible(true);
+    if(!edit.getIsOpened())
+    {
+        QMessageBox messageBox;
+        messageBox.critical(0,"Error","No file open to edit.");
+        messageBox.setFixedSize(200,500);
+        return;
+    }
+
+    ui->FileDockLayoutWidget->setVisible(false);
+    ui->FileEditLayout->setVisible(true);
+    ui->PlayButton->setVisible(false);
+    ui->EditMetadataButton->setVisible(true);
 }
 
 void Wav_Processor::on_LoadButton_clicked()
@@ -135,10 +146,16 @@ void Wav_Processor::on_ApplyMetadataButton_clicked()
     ui->Track->setText(ui->TrackLEdit->text());
     ui->TrackNumber->setText(ui->TrackNumberLEdit->text());
 
+    edit.getCurrentFileEdit()->changeMetaData("INAM", ui->ArtistName->text());
+
+    edit.setChangesMade(true);
+    edit.setIsMetaDataEdited(true);
 }
 
 void Wav_Processor::on_PlayButton_clicked()
 {
+   if(!ui->DockedFiles->isItemSelected(SelectedDockedItem)) return;
+
    int currentIdx = ui->DockedFiles->row(SelectedDockedItem);
    QFileInfo info;
    std::vector<QFile*> outFile = fileM->getFiles();
@@ -146,4 +163,37 @@ void Wav_Processor::on_PlayButton_clicked()
    info.setFile(*outFile.at(currentIdx));
    qDebug() << info.filePath();
    QSound::play(info.filePath());
+}
+
+void Wav_Processor::on_OpenButton_clicked()
+{
+    if(!ui->DockedFiles->isItemSelected(SelectedDockedItem)) return;
+
+    int currentIdx = ui->DockedFiles->row(SelectedDockedItem);
+    QFileInfo info;
+    std::vector<QFile*> outFile = fileM->getFiles();
+
+    info.setFile(*outFile.at(currentIdx));
+    edit.OpenFileToEdit(info.filePath());
+}
+
+void Wav_Processor::on_SaveButton_clicked()
+{
+    if(!edit.getIsEditing()) return;
+
+    QFile writeFile;
+
+    if(edit.getIsWavProcessed())
+    {
+
+    }
+    else if(edit.getIsMetaDataEdited())
+    {
+        int currentIdx = ui->DockedFiles->row(SelectedDockedItem);
+        QFileInfo info;
+        std::vector<QFile*> outFile = fileM->getFiles();
+        info.setFile(*outFile.at(currentIdx));
+
+        edit.getCurrentFileEdit()->writeFile(info.filePath());
+    }
 }
