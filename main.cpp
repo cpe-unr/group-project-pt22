@@ -24,9 +24,7 @@
  * \retval        ERR_SUCCESS    The function is successfully executed
  * \retval        ERR_FAILURE    An error occurred
  */
-void fn(){
 
-}
 
 int main(int argc, char *argv[]) {
 
