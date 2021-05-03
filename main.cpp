@@ -1,11 +1,6 @@
 /** @file */
 #include <iostream>
-#include "WavFile.h"
-#include "Sorting.h"
-#include <string>
-#include <vector>
 
-using namespace std;
 /**
  * \brief   The function bar.
  *
@@ -29,23 +24,6 @@ using namespace std;
 
 
 int main() {
-    string names[1];
-    names[0] = "yes-8bit-mono.wav";
-    //names[1] = "yes-8-bit-stereo.wav";
-    //names[2] = "yes-16-bit-mono.wav";
-    //names[3] = "yes-26-bit-stereo.wav";
-    Sorting sort;
-    vector<WavFile*> files;
-
-
-    for(auto filename : names)
-    {
-    	sort.filter(filename, files);
-    }
-    files[0]->changeMetaData("INAM", "temp");
-    files[0]->changeMetaData("IPRD", "1999");
-    files[0]->writeFile(names[0]);
-
 
     return 0;
 }
