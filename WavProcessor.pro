@@ -13,6 +13,9 @@ SOURCES += \
     16BitWav.cpp \
     32BitWav.cpp \
     8BitWav.cpp \
+    Echo.cpp \
+    Limiter.cpp \
+    Normalizer.cpp \
     Sorting.cpp \
     fileeditor.cpp \
     filemanager.cpp \
@@ -24,13 +27,17 @@ HEADERS += \
     16BitWav.h \
     32BitWav.h \
     8BitWav.h \
+    Echo.h \
+    Limiter.h \
     MetaDataHeader.h \
     MetaStructure.h \
+    Normalizer.h \
     Sorting.h \
     WavFile.h \
     WavStructure.h \
     fileeditor.h \
     filemanager.h \
+    iProcessor.h \
     puimanager.h \
     user_interface.h
 

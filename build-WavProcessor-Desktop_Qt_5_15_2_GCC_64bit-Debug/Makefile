@@ -55,6 +55,9 @@ OBJECTS_DIR   = ./
 SOURCES       = ../16BitWav.cpp \
 		../32BitWav.cpp \
 		../8BitWav.cpp \
+		../Echo.cpp \
+		../Limiter.cpp \
+		../Normalizer.cpp \
 		../Sorting.cpp \
 		../fileeditor.cpp \
 		../filemanager.cpp \
@@ -64,6 +67,9 @@ SOURCES       = ../16BitWav.cpp \
 OBJECTS       = 16BitWav.o \
 		32BitWav.o \
 		8BitWav.o \
+		Echo.o \
+		Limiter.o \
+		Normalizer.o \
 		Sorting.o \
 		fileeditor.o \
 		filemanager.o \
@@ -251,17 +257,24 @@ DIST          = /home/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../WavProcessor.pro ../16BitWav.h \
 		../32BitWav.h \
 		../8BitWav.h \
+		../Echo.h \
+		../Limiter.h \
 		../MetaDataHeader.h \
 		../MetaStructure.h \
+		../Normalizer.h \
 		../Sorting.h \
 		../WavFile.h \
 		../WavStructure.h \
 		../fileeditor.h \
 		../filemanager.h \
+		../iProcessor.h \
 		../puimanager.h \
 		../user_interface.h ../16BitWav.cpp \
 		../32BitWav.cpp \
 		../8BitWav.cpp \
+		../Echo.cpp \
+		../Limiter.cpp \
+		../Normalizer.cpp \
 		../Sorting.cpp \
 		../fileeditor.cpp \
 		../filemanager.cpp \
@@ -651,8 +664,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../16BitWav.h ../32BitWav.h ../8BitWav.h ../MetaDataHeader.h ../MetaStructure.h ../Sorting.h ../WavFile.h ../WavStructure.h ../fileeditor.h ../filemanager.h ../puimanager.h ../user_interface.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../16BitWav.cpp ../32BitWav.cpp ../8BitWav.cpp ../Sorting.cpp ../fileeditor.cpp ../filemanager.cpp ../main.cpp ../puimanager.cpp ../user_interface.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../16BitWav.h ../32BitWav.h ../8BitWav.h ../Echo.h ../Limiter.h ../MetaDataHeader.h ../MetaStructure.h ../Normalizer.h ../Sorting.h ../WavFile.h ../WavStructure.h ../fileeditor.h ../filemanager.h ../iProcessor.h ../puimanager.h ../user_interface.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../16BitWav.cpp ../32BitWav.cpp ../8BitWav.cpp ../Echo.cpp ../Limiter.cpp ../Normalizer.cpp ../Sorting.cpp ../fileeditor.cpp ../filemanager.cpp ../main.cpp ../puimanager.cpp ../user_interface.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Wav_Processor.ui $(DISTDIR)/
 	$(COPY_FILE) --parents WavProcessor_en_US.ts $(DISTDIR)/
 
@@ -820,6 +833,12 @@ moc_user_interface.cpp: ../user_interface.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qstyle.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../fileeditor.h \
+		../WavFile.h \
+		../WavStructure.h \
+		../MetaStructure.h \
+		../MetaDataHeader.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QString \
 		moc_predefs.h \
 		../../../../Qt/5.15.2/gcc_64/bin/moc
 	/home/pearson/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include /home/pearson/CS202/Team/group-project-pt22/build-WavProcessor-Desktop_Qt_5_15_2_GCC_64bit-Debug/moc_predefs.h -I/home/pearson/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I/home/pearson/CS202/Team/group-project-pt22 -I/home/pearson/Qt/5.15.2/gcc_64/include -I/home/pearson/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/pearson/Qt/5.15.2/gcc_64/include/QtMultimedia -I/home/pearson/Qt/5.15.2/gcc_64/include/QtGui -I/home/pearson/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/pearson/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../user_interface.h -o moc_user_interface.cpp
@@ -849,28 +868,168 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 		../WavFile.h \
 		../WavStructure.h \
 		../MetaStructure.h \
-		../MetaDataHeader.h
+		../MetaDataHeader.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QString \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringview.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringbuilder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o 16BitWav.o ../16BitWav.cpp
 
 32BitWav.o: ../32BitWav.cpp ../32BitWav.h \
 		../WavFile.h \
 		../WavStructure.h \
 		../MetaStructure.h \
-		../MetaDataHeader.h
+		../MetaDataHeader.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QString \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringview.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringbuilder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o 32BitWav.o ../32BitWav.cpp
 
 8BitWav.o: ../8BitWav.cpp ../WavFile.h \
 		../WavStructure.h \
 		../MetaStructure.h \
 		../MetaDataHeader.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QString \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringview.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringbuilder.h \
 		../8BitWav.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o 8BitWav.o ../8BitWav.cpp
+
+Echo.o: ../Echo.cpp ../Echo.h \
+		../iProcessor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Echo.o ../Echo.cpp
+
+Limiter.o: ../Limiter.cpp ../Limiter.h \
+		../iProcessor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Limiter.o ../Limiter.cpp
+
+Normalizer.o: ../Normalizer.cpp ../Normalizer.h \
+		../iProcessor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Normalizer.o ../Normalizer.cpp
 
 Sorting.o: ../Sorting.cpp ../Sorting.h \
 		../WavFile.h \
 		../WavStructure.h \
 		../MetaStructure.h \
 		../MetaDataHeader.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QString \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringview.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringbuilder.h \
 		../32BitWav.h \
 		../16BitWav.h \
 		../8BitWav.h
@@ -945,7 +1104,55 @@ fileeditor.o: ../fileeditor.cpp ../fileeditor.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qshareddata.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qhash.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QStringList \
-		../Sorting.h
+		../Sorting.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QMessageBox \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qmessagebox.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtguiglobal.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qmargins.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qrect.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsize.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qpalette.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qcolor.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qrgb.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qrgba64.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qbrush.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qmatrix.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qpolygon.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qregion.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qdatastream.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qline.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtransform.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qimage.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qpixelformat.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qpixmap.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qfont.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qfontinfo.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qcursor.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qkeysequence.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qevent.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qvariant.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qset.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qurl.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qurlquery.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qvector2d.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fileeditor.o ../fileeditor.cpp
 
 filemanager.o: ../filemanager.cpp ../filemanager.h \
@@ -1196,6 +1403,12 @@ main.o: ../main.cpp ../user_interface.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qstyle.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../fileeditor.h \
+		../WavFile.h \
+		../WavStructure.h \
+		../MetaStructure.h \
+		../MetaDataHeader.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QString \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1402,6 +1615,12 @@ user_interface.o: ../user_interface.cpp ../user_interface.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qstyle.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../fileeditor.h \
+		../WavFile.h \
+		../WavStructure.h \
+		../MetaStructure.h \
+		../MetaDataHeader.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QString \
 		ui_Wav_Processor.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QVariant \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
@@ -1453,7 +1672,9 @@ user_interface.o: ../user_interface.cpp ../user_interface.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtMultimedia/QSound \
 		../../../../Qt/5.15.2/gcc_64/include/QtMultimedia/qsound.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtMultimedia/qtmultimedia-config.h
+		../../../../Qt/5.15.2/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QMessageBox \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o user_interface.o ../user_interface.cpp
 
 moc_user_interface.o: moc_user_interface.cpp 
