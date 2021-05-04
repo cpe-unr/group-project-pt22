@@ -2,6 +2,7 @@
 #include "filemanager.h"
 #include <Sorting.h>
 #include <QMessageBox>
+#include <QDebug>
 FileEditor::FileEditor()
 {
 
@@ -66,28 +67,29 @@ void FileEditor::resetEdit()
 {
 
     warnedSave = false;
-    warnedSave = false;
     isEditing = false;
     changesMade = false;
     isOpened = false;
     currentFileEdit = nullptr;
 }
 
-void FileEditor::OpenFileToEdit(QString filePath)
+bool FileEditor::OpenFileToEdit(QString filePath)
 {
+    qDebug() << changesMade << ":" << warnedSave;
     if(changesMade && !warnedSave)
     {
         QMessageBox messageBox;
         messageBox.critical(0,"Warning","Changes made, save if you do not wish to lose edit. Otherwise, continue to open file.");
         messageBox.setFixedSize(200,500);
         warnedSave = true;
+        return false;
     }
     else
     {
         resetEdit();
         Sorting sort;
         currentFileEdit = sort.filter(filePath);
-        std::cout << currentFileEdit->waveHeader.bit_depth << std::endl;
         isOpened = true;
+        return true;
     }
 }

@@ -31,7 +31,7 @@ public:
     void resetEdit();
 
     void changeMetadata();
-    void OpenFileToEdit(QString filePath);
+    bool OpenFileToEdit(QString filePath);
 };
 
 #endif // FILEEDITOR_H

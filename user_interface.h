@@ -42,6 +42,8 @@ private slots:
 
     void on_SaveButton_clicked();
 
+    void on_ApplyButton_clicked();
+
 private:
     Ui::Wav_Processor *ui;
 

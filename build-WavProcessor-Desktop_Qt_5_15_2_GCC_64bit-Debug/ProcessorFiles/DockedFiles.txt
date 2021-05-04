@@ -1,0 +1,2 @@
+/home/pearson/CS202/echo1.wav
+/home/pearson/CS202/yes-16-bit-mono.wav

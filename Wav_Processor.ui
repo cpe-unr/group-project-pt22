@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>301</width>
-    <height>589</height>
+    <width>667</width>
+    <height>688</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -67,9 +67,6 @@
         <item>
          <widget class="QWidget" name="ParamLayout" native="true">
           <layout class="QGridLayout" name="gridLayout">
-           <item row="2" column="2">
-            <widget class="QTextEdit" name="textEdit_2"/>
-           </item>
            <item row="2" column="0">
             <widget class="QLabel" name="label">
              <property name="text">
@@ -77,28 +74,31 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="2">
-            <widget class="QTextEdit" name="textEdit"/>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="NormalizeLE"/>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="EchoLE"/>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="LimiterLE"/>
            </item>
            <item row="3" column="2">
-            <widget class="QTextEdit" name="textEdit_4"/>
-           </item>
-           <item row="3" column="3">
-            <widget class="QPushButton" name="pushButton_7">
+            <widget class="QLabel" name="label_2">
              <property name="text">
               <string>Echo</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="3">
-            <widget class="QPushButton" name="pushButton_6">
+           <item row="2" column="2">
+            <widget class="QLabel" name="label_3">
              <property name="text">
-              <string>Noise Gate</string>
+              <string>Limit</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="3">
-            <widget class="QPushButton" name="pushButton_4">
+           <item row="1" column="2">
+            <widget class="QLabel" name="label_4">
              <property name="text">
               <string>Normalize</string>
              </property>
@@ -609,7 +609,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>301</width>
+     <width>667</width>
      <height>22</height>
     </rect>
    </property>

@@ -21,7 +21,6 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -44,13 +43,13 @@ public:
     QVBoxLayout *EditLayout;
     QWidget *ParamLayout;
     QGridLayout *gridLayout;
-    QTextEdit *textEdit_2;
     QLabel *label;
-    QTextEdit *textEdit;
-    QTextEdit *textEdit_4;
-    QPushButton *pushButton_7;
-    QPushButton *pushButton_6;
-    QPushButton *pushButton_4;
+    QLineEdit *NormalizeLE;
+    QLineEdit *EchoLE;
+    QLineEdit *LimiterLE;
+    QLabel *label_2;
+    QLabel *label_3;
+    QLabel *label_4;
     QPushButton *ApplyButton;
     QPushButton *SaveButton;
     QWidget *verticalWidget;
@@ -118,7 +117,7 @@ public:
     {
         if (Wav_Processor->objectName().isEmpty())
             Wav_Processor->setObjectName(QString::fromUtf8("Wav_Processor"));
-        Wav_Processor->resize(301, 589);
+        Wav_Processor->resize(667, 688);
         centralwidget = new QWidget(Wav_Processor);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         FilesLayoutWidget = new QWidget(centralwidget);
@@ -163,40 +162,40 @@ public:
         ParamLayout->setObjectName(QString::fromUtf8("ParamLayout"));
         gridLayout = new QGridLayout(ParamLayout);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        textEdit_2 = new QTextEdit(ParamLayout);
-        textEdit_2->setObjectName(QString::fromUtf8("textEdit_2"));
-
-        gridLayout->addWidget(textEdit_2, 2, 2, 1, 1);
-
         label = new QLabel(ParamLayout);
         label->setObjectName(QString::fromUtf8("label"));
 
         gridLayout->addWidget(label, 2, 0, 1, 1);
 
-        textEdit = new QTextEdit(ParamLayout);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        NormalizeLE = new QLineEdit(ParamLayout);
+        NormalizeLE->setObjectName(QString::fromUtf8("NormalizeLE"));
 
-        gridLayout->addWidget(textEdit, 1, 2, 1, 1);
+        gridLayout->addWidget(NormalizeLE, 1, 1, 1, 1);
 
-        textEdit_4 = new QTextEdit(ParamLayout);
-        textEdit_4->setObjectName(QString::fromUtf8("textEdit_4"));
+        EchoLE = new QLineEdit(ParamLayout);
+        EchoLE->setObjectName(QString::fromUtf8("EchoLE"));
 
-        gridLayout->addWidget(textEdit_4, 3, 2, 1, 1);
+        gridLayout->addWidget(EchoLE, 3, 1, 1, 1);
 
-        pushButton_7 = new QPushButton(ParamLayout);
-        pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
+        LimiterLE = new QLineEdit(ParamLayout);
+        LimiterLE->setObjectName(QString::fromUtf8("LimiterLE"));
 
-        gridLayout->addWidget(pushButton_7, 3, 3, 1, 1);
+        gridLayout->addWidget(LimiterLE, 2, 1, 1, 1);
 
-        pushButton_6 = new QPushButton(ParamLayout);
-        pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
+        label_2 = new QLabel(ParamLayout);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        gridLayout->addWidget(pushButton_6, 2, 3, 1, 1);
+        gridLayout->addWidget(label_2, 3, 2, 1, 1);
 
-        pushButton_4 = new QPushButton(ParamLayout);
-        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+        label_3 = new QLabel(ParamLayout);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
 
-        gridLayout->addWidget(pushButton_4, 1, 3, 1, 1);
+        gridLayout->addWidget(label_3, 2, 2, 1, 1);
+
+        label_4 = new QLabel(ParamLayout);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        gridLayout->addWidget(label_4, 1, 2, 1, 1);
 
 
         EditLayout->addWidget(ParamLayout);
@@ -483,7 +482,7 @@ public:
         Wav_Processor->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Wav_Processor);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 301, 22));
+        menubar->setGeometry(QRect(0, 0, 667, 22));
         Wav_Processor->setMenuBar(menubar);
         statusbar = new QStatusBar(Wav_Processor);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -504,9 +503,9 @@ public:
         RemoveButton->setText(QCoreApplication::translate("Wav_Processor", "Remove File", nullptr));
         OpenButton->setText(QCoreApplication::translate("Wav_Processor", "Open", nullptr));
         label->setText(QCoreApplication::translate("Wav_Processor", "Amount = ", nullptr));
-        pushButton_7->setText(QCoreApplication::translate("Wav_Processor", "Echo", nullptr));
-        pushButton_6->setText(QCoreApplication::translate("Wav_Processor", "Noise Gate", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("Wav_Processor", "Normalize", nullptr));
+        label_2->setText(QCoreApplication::translate("Wav_Processor", "Echo", nullptr));
+        label_3->setText(QCoreApplication::translate("Wav_Processor", "Limit", nullptr));
+        label_4->setText(QCoreApplication::translate("Wav_Processor", "Normalize", nullptr));
         ApplyButton->setText(QCoreApplication::translate("Wav_Processor", "Apply", nullptr));
         SaveButton->setText(QCoreApplication::translate("Wav_Processor", "Save", nullptr));
         TrackNumber_2->setText(QCoreApplication::translate("Wav_Processor", "Track Number:", nullptr));

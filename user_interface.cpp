@@ -6,7 +6,14 @@
 #include <QFileInfo>
 #include <QtMultimedia/QSound>
 #include <QFile>
+#include <Echo.h>
+#include <Normalizer.h>
+#include <Limiter.h>
 #include <QMessageBox>
+#include <16BitWav.h>
+#include <32BitWav.h>
+#include <8BitWav.h>
+#include <Sorting.h>
 Wav_Processor::Wav_Processor(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::Wav_Processor)
 {
@@ -22,6 +29,7 @@ Wav_Processor::Wav_Processor(QWidget *parent, FileManager *fileManager) : QMainW
     ui->EditMetadataButton->setVisible(false);
     ui->ApplyMetadataButton->setVisible(false);
     ui->MetadataLineEditLayout->setVisible(false);
+    ui->PlayButton->setVisible(false);
     updateFileList();
 }
 
@@ -53,6 +61,7 @@ void Wav_Processor::on_FileButton_clicked()
     ui->FileDockLayoutWidget->setVisible(true);
     ui->EditMetadataButton->setVisible(false);
     ui->PlayButton->setVisible(true);
+    ui->PlayButton->setVisible(edit.getCurrentFileEdit() ? true : false);
     ui->DockedFiles->clear();
     updateFileList();
 }
@@ -146,7 +155,7 @@ void Wav_Processor::on_ApplyMetadataButton_clicked()
     ui->Track->setText(ui->TrackLEdit->text());
     ui->TrackNumber->setText(ui->TrackNumberLEdit->text());
 
-    edit.getCurrentFileEdit()->changeMetaData("INAM", ui->ArtistName->text());
+    //edit.getCurrentFileEdit()->changeMetaData("INAM", ui->ArtistName->text());
 
     edit.setChangesMade(true);
     edit.setIsMetaDataEdited(true);
@@ -156,10 +165,12 @@ void Wav_Processor::on_PlayButton_clicked()
 {
    if(!ui->DockedFiles->isItemSelected(SelectedDockedItem)) return;
 
+
    int currentIdx = ui->DockedFiles->row(SelectedDockedItem);
-   QFileInfo info;
+
    std::vector<QFile*> outFile = fileM->getFiles();
 
+   QFileInfo info;
    info.setFile(*outFile.at(currentIdx));
    qDebug() << info.filePath();
    QSound::play(info.filePath());
@@ -167,14 +178,19 @@ void Wav_Processor::on_PlayButton_clicked()
 
 void Wav_Processor::on_OpenButton_clicked()
 {
-    if(!ui->DockedFiles->isItemSelected(SelectedDockedItem)) return;
-
     int currentIdx = ui->DockedFiles->row(SelectedDockedItem);
-    QFileInfo info;
     std::vector<QFile*> outFile = fileM->getFiles();
-
+    QFileInfo info;
     info.setFile(*outFile.at(currentIdx));
-    edit.OpenFileToEdit(info.filePath());
+    if(!ui->DockedFiles->isItemSelected(SelectedDockedItem) || !edit.OpenFileToEdit(info.filePath())) return;
+
+    ui->PlayButton->setText("Play: " + info.fileName());
+    if(ui->FileDockLayoutWidget->isVisible())
+    {
+        ui->PlayButton->setVisible(true);
+    }
+
+
 }
 
 void Wav_Processor::on_SaveButton_clicked()
@@ -183,11 +199,53 @@ void Wav_Processor::on_SaveButton_clicked()
 
     QFile writeFile;
 
+    int currentIdx = ui->DockedFiles->row(SelectedDockedItem);
+    std::vector<QFile*> outFile = fileM->getFiles();
+    QFileInfo info;
+    info.setFile(*outFile.at(currentIdx));
+
+    QString newPath = QFileDialog::getSaveFileName() + ".wav";
+
+
+    QFile newFile(QDir("ProcessorFiles").path() + "/" + "DockedFiles.txt");
+
+    if(fileM->saveFilePath(newFile, newPath, ".wav") && !QFile(newPath).exists()) updateFileList();
+
     if(edit.getIsWavProcessed())
     {
+        switch(edit.getCurrentFileEdit()->waveHeader.bit_depth)
+        {
+            case 8:{
 
+                qDebug() << "test4";
+                BitWav8* wav = new BitWav8();
+
+                wav->readFile("ProcessorFiles/WavFiles/Editing.wav");
+                wav->writeFile(newPath);
+
+            break;}
+
+            case 16:{
+                BitWav16* wav = new BitWav16();
+                wav->readFile(info.filePath());
+               // NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+                //LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+               // EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+                break;}
+
+            case 32:{
+                BitWav32* wav = new BitWav32();
+                wav->readFile(info.filePath());
+                //NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+               // LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+               // EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+                break;}
+        }
     }
-    else if(edit.getIsMetaDataEdited())
+
+
+    edit.setChangesMade(false);
+   /* else if(edit.getIsMetaDataEdited())
     {
         int currentIdx = ui->DockedFiles->row(SelectedDockedItem);
         QFileInfo info;
@@ -195,5 +253,67 @@ void Wav_Processor::on_SaveButton_clicked()
         info.setFile(*outFile.at(currentIdx));
 
         edit.getCurrentFileEdit()->writeFile(info.filePath());
+    }*/
+}
+
+void Wav_Processor::on_ApplyButton_clicked()
+{
+
+    if(!ui->DockedFiles->isItemSelected(SelectedDockedItem)) return;
+
+    int currentIdx = ui->DockedFiles->row(SelectedDockedItem);
+    std::vector<QFile*> outFile = fileM->getFiles();
+    QFileInfo info;
+    info.setFile(*outFile.at(currentIdx));
+
+    float normalVal = ui->NormalizeLE->text().toFloat(),
+          limitVal = ui->LimiterLE->text().toFloat(),
+          echoVal = ui->EchoLE->text().toFloat();
+
+    edit.setIsEditing(true);
+
+    iProcessor *NormalProcessor = new Normalizer(normalVal);
+    iProcessor *LimitProcessor = new Limiter(limitVal);
+    iProcessor *EchoProcessor = new Echo(echoVal);
+
+
+    qDebug() << echoVal;
+    switch(edit.getCurrentFileEdit()->waveHeader.bit_depth)
+    {
+        case 8:{
+
+            qDebug() << "test4";
+            BitWav8* wav = new BitWav8();
+
+            wav->readFile(info.filePath());
+            NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+            LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+            EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+
+            wav->writeFile(QDir("ProcessorFiles/WavFiles/Editing.wav").path());
+
+        break;}
+
+        case 16:{
+            BitWav16* wav = new BitWav16();
+            wav->readFile(info.filePath());
+           // NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+            //LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+           // EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+            break;}
+
+        case 32:{
+            BitWav32* wav = new BitWav32();
+            wav->readFile(info.filePath());
+            //NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+           // LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+           // EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+            break;}
     }
+
+    delete NormalProcessor;
+    delete LimitProcessor;
+    delete EchoProcessor;
+    edit.setIsWavProcessed(true);
+    edit.setChangesMade(true);
 }

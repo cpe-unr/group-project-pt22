@@ -21,6 +21,31 @@ public:
 		return waveHeader.data_bytes;
 	}
 
+    string metaDisplayer(const QString &iName)
+    {
+        string tempS;
+        string inName = iName.toStdString();
+        int i;
+        for(i = 0; i < 1; i++)
+        {
+            tempS = "";
+            for(int a = 0; a < sizeof(metaStruc[i]->metaDataChunk);a++)
+            {
+                if(metaStruc[i]->metaDataChunk[a] >= 'A' && metaStruc[i]->metaDataChunk[a] <= 'Z')
+                {
+                    tempS += metaStruc[i]->metaDataChunk[a];
+                }
+                else if(metaStruc[i]->metaDataChunk[a] >= 'a' && metaStruc[i]->metaDataChunk[a] <='z')
+                {
+                    tempS += metaStruc[i]->metaDataChunk[a] - 32;                    }
+            }
+            if(tempS == inName)
+            {
+                return metaChunk_value[i];
+            }
+        }
+            return "";
+    }
 	void getMetaData(ifstream &file)
 	{
 		int i = 0;
