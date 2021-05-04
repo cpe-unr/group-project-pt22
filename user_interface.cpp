@@ -158,6 +158,7 @@ void Wav_Processor::on_ApplyMetadataButton_clicked()
     //edit.getCurrentFileEdit()->changeMetaData("INAM", ui->ArtistName->text());
 
     edit.setChangesMade(true);
+    edit.setIsEditing(true);
     edit.setIsMetaDataEdited(true);
 }
 
@@ -184,11 +185,32 @@ void Wav_Processor::on_OpenButton_clicked()
     info.setFile(*outFile.at(currentIdx));
     if(!ui->DockedFiles->isItemSelected(SelectedDockedItem) || !edit.OpenFileToEdit(info.filePath())) return;
 
+qDebug() << "tester";
+
+
+    qDebug() << edit.getCurrentFileEdit()->metaDisplayer("INAM");
+    qDebug() << edit.getCurrentFileEdit()->metaDisplayer("IART");
+    qDebug() << edit.getCurrentFileEdit()->metaDisplayer("IPRD");
+    qDebug() << edit.getCurrentFileEdit()->metaDisplayer("IGNR");
+    qDebug() << edit.getCurrentFileEdit()->metaDisplayer("ICRD");
+    qDebug() << edit.getCurrentFileEdit()->metaDisplayer("ITRK");
+    qDebug() << edit.getCurrentFileEdit()->metaDisplayer("ICMT");
+
+    ui->AlbumName->setText(edit.getCurrentFileEdit()->metaDisplayer("IPRD"));
+    ui->ArtistName->setText(edit.getCurrentFileEdit()->metaDisplayer("IART"));
+    ui->Comments->setText(edit.getCurrentFileEdit()->metaDisplayer("ICMT"));
+    ui->Genre->setText(edit.getCurrentFileEdit()->metaDisplayer("IGNR"));
+    ui->ReleaseYear->setText(edit.getCurrentFileEdit()->metaDisplayer("ICRD"));
+    ui->Track->setText(edit.getCurrentFileEdit()->metaDisplayer("INAM"));
+    ui->TrackNumber->setText(edit.getCurrentFileEdit()->metaDisplayer("ITRK"));
+
+qDebug() << "finish";
     ui->PlayButton->setText("Play: " + info.fileName());
     if(ui->FileDockLayoutWidget->isVisible())
     {
         ui->PlayButton->setVisible(true);
     }
+
 
 
 }
@@ -199,6 +221,8 @@ void Wav_Processor::on_SaveButton_clicked()
 
     QFile writeFile;
 
+
+    qDebug() << "test0";
     int currentIdx = ui->DockedFiles->row(SelectedDockedItem);
     std::vector<QFile*> outFile = fileM->getFiles();
     QFileInfo info;
@@ -206,11 +230,13 @@ void Wav_Processor::on_SaveButton_clicked()
 
     QString newPath = QFileDialog::getSaveFileName() + ".wav";
 
+    qDebug() << edit.getIsMetaDataEdited();
 
     QFile newFile(QDir("ProcessorFiles").path() + "/" + "DockedFiles.txt");
+    qDebug() << "testssa";
 
     if(fileM->saveFilePath(newFile, newPath, ".wav") && !QFile(newPath).exists()) updateFileList();
-
+    qDebug() << "testss";
     if(edit.getIsWavProcessed())
     {
         switch(edit.getCurrentFileEdit()->waveHeader.bit_depth)
@@ -228,7 +254,7 @@ void Wav_Processor::on_SaveButton_clicked()
                 qDebug() << "STest1";
                 BitWav16* wav = new BitWav16();
                 qDebug() << "STest2";
-                wav->readFile(info.filePath());
+                wav->readFile("ProcessorFiles/WavFiles/Editing2.wav");
                 qDebug() << "STest3";
                 wav->writeFile(newPath);
                //NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
@@ -246,18 +272,66 @@ void Wav_Processor::on_SaveButton_clicked()
                 break;}
         }
     }
+    else if(edit.getIsMetaDataEdited())
+    {
+
+
+
+         qDebug() << "test2";
+         //edit.getCurrentFileEdit()->writeFile(newPath);
+         qDebug() << "test3";
+
+         switch(edit.getCurrentFileEdit()->waveHeader.bit_depth)
+         {
+                case 8:{
+
+                    BitWav8* wav = new BitWav8();
+                    wav->readFile(info.filePath());
+
+                    wav->changeMetaData("INAM", ui->TrackLEdit->text());
+                    wav->changeMetaData("IART", ui->ArtistName->text());
+                    wav->changeMetaData("IPRD", ui->AlbumNameLEdit->text());
+                    wav->changeMetaData("IGNR", ui->GenreLEdit->text());
+                    wav->changeMetaData("ICRD", ui->ReleaseYearLEdit->text());
+                    wav->changeMetaData("ITRK", ui->TrackNumberLEdit->text());
+                    wav->changeMetaData("ICMT", ui->CommentsLEdit->text());
+
+                    qDebug() << "success " << info.filePath();
+
+                    wav->writeFile(newPath);
+                    /*edit.getCurrentFileEdit()->metaDisplayer("INAM");
+                    edit.getCurrentFileEdit()->metaDisplayer("IART");
+                    edit.getCurrentFileEdit()->metaDisplayer("IPRD");
+                    edit.getCurrentFileEdit()->metaDisplayer("IGNR");
+                    edit.getCurrentFileEdit()->metaDisplayer("ICRD");
+                    edit.getCurrentFileEdit()->metaDisplayer("ITRK");
+                    edit.getCurrentFileEdit()->metaDisplayer("ICMT");*/
+
+
+                break;}
+
+                case 16:{
+                    qDebug() << "STest1";
+                    BitWav16* wav = new BitWav16();
+                   //NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+                    //LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+                   // EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+                    break;}
+
+                case 32:{
+                    BitWav32* wav = new BitWav32();
+                    //NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+                   // LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+                   // EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+                    break;}
+            }
+
+
+         //edit.getCurrentFileEdit()->writeFile(info.filePath());
+    }
 
 
     edit.setChangesMade(false);
-   /* else if(edit.getIsMetaDataEdited())
-    {
-        int currentIdx = ui->DockedFiles->row(SelectedDockedItem);
-        QFileInfo info;
-        std::vector<QFile*> outFile = fileM->getFiles();
-        info.setFile(*outFile.at(currentIdx));
-
-        edit.getCurrentFileEdit()->writeFile(info.filePath());
-    }*/
 }
 
 void Wav_Processor::on_ApplyButton_clicked()
@@ -303,15 +377,11 @@ void Wav_Processor::on_ApplyButton_clicked()
             qDebug() << "ATest1";
             BitWav16* wav = new BitWav16();
             wav->readFile(info.filePath());
-            qDebug() << "ATest2";
             NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
-            qDebug() << "ATest3";
             LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
-            qDebug() << "ATest4";
             EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
-            qDebug() << "ATest5";
 
-            wav->writeFile(QDir("ProcessorFiles/WavFiles/Editing.wav").path());
+            wav->writeFile(QDir("ProcessorFiles/WavFiles/Editing2.wav").path());
 
             qDebug() << "ATest6";
             break;}

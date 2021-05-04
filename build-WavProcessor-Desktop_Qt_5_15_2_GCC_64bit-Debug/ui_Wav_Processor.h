@@ -107,8 +107,6 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *FileButton;
     QPushButton *EditButton;
-    QWidget *MetadataDisplayLayout;
-    QVBoxLayout *MetaDataDisplayLayout;
     QMenuBar *menubar;
     QStatusBar *statusbar;
     QToolBar *toolBar;
@@ -117,7 +115,7 @@ public:
     {
         if (Wav_Processor->objectName().isEmpty())
             Wav_Processor->setObjectName(QString::fromUtf8("Wav_Processor"));
-        Wav_Processor->resize(667, 688);
+        Wav_Processor->resize(320, 619);
         centralwidget = new QWidget(Wav_Processor);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         FilesLayoutWidget = new QWidget(centralwidget);
@@ -474,15 +472,10 @@ public:
 
         horizontalLayout->addWidget(EditButton);
 
-        MetadataDisplayLayout = new QWidget(centralwidget);
-        MetadataDisplayLayout->setObjectName(QString::fromUtf8("MetadataDisplayLayout"));
-        MetadataDisplayLayout->setGeometry(QRect(370, 200, 161, 251));
-        MetaDataDisplayLayout = new QVBoxLayout(MetadataDisplayLayout);
-        MetaDataDisplayLayout->setObjectName(QString::fromUtf8("MetaDataDisplayLayout"));
         Wav_Processor->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Wav_Processor);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 667, 22));
+        menubar->setGeometry(QRect(0, 0, 320, 22));
         Wav_Processor->setMenuBar(menubar);
         statusbar = new QStatusBar(Wav_Processor);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

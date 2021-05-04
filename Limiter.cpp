@@ -26,7 +26,7 @@ void Limiter::processBuffer(signed int* buffer, int bufferSize){
  	};
 };
 
-void Limiter::processBuffer(signed short int* buffer, int bufferSize){
+void Limiter::processBuffer(signed short* buffer, int bufferSize){
 	int i = 0;
 	for(i;buffer[i] != '\0'; i++){
   		if(buffer[i] >= lim*32767){

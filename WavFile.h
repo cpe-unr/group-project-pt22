@@ -21,12 +21,12 @@ public:
 		return waveHeader.data_bytes;
 	}
 
-    string metaDisplayer(const QString &iName)
+    QString metaDisplayer(const QString &iName)
     {
         string tempS;
         string inName = iName.toStdString();
         int i;
-        for(i = 0; i < 1; i++)
+        for(i = 0; i < metaStruc.size(); i++)
         {
             tempS = "";
             for(int a = 0; a < sizeof(metaStruc[i]->metaDataChunk);a++)
@@ -41,7 +41,7 @@ public:
             }
             if(tempS == inName)
             {
-                return metaChunk_value[i];
+                return QString::fromStdString(metaChunk_value[i]);
             }
         }
             return "";
@@ -76,7 +76,7 @@ public:
         string mI = metaInfo.toStdString();
         string tempS;
 		int i;
-		for(i = 0; i < 1; i++)
+        for(i = 0; i < metaStruc.size(); i++)
 		{
 			tempS = "";
 			for(int a = 0; a < sizeof(metaStruc[i]->metaDataChunk);a++)
