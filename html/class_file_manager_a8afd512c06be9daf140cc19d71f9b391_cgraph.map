@@ -1,0 +1,4 @@
+<map id="FileManager::FileManager" name="FileManager::FileManager">
+<area shape="rect" id="node1" title="Constructor that creates a directory and txt file to store file paths if not already created." alt="" coords="5,5,177,32"/>
+<area shape="rect" id="node2" href="$class_file_manager.html#aff74ed4d2bfa878321743811a42695e1" title="creates a new file in a directory" alt="" coords="225,5,384,32"/>
+</map>
