@@ -44,6 +44,8 @@ private slots:
 
     void on_ApplyButton_clicked();
 
+    void on_ExportDataToCSVButton_clicked();
+
 private:
     Ui::Wav_Processor *ui;
 

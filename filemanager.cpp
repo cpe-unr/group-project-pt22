@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QTextStream>
 
+///Constructor that creates a directory and txt file to store file paths if not already created
 FileManager::FileManager()
 {
     if(!QDir("ProcessorFiles").exists())
@@ -20,6 +21,7 @@ FileManager::FileManager()
 
 }
 
+///creates a new file in a directory
 void FileManager::createFile(QString Directory, QString FileName)
 {
 
@@ -42,7 +44,7 @@ void FileManager::createFile(QString Directory, QString FileName)
     }
 
 }
-
+///Saves a file path of a file type into a txt file that stores paths
 bool FileManager::saveFilePath(QFile &writeFile, QString filePath, QString fileType)
 {
     QString type;
@@ -78,6 +80,7 @@ std::vector<QFile*> FileManager::getFiles()
     return files;
 }
 
+///returns out each line in a current file
 std::vector<QString> FileManager::readFileLines(QFile &file)
 {
     std::vector<QString> outStrings;
@@ -96,6 +99,7 @@ std::vector<QString> FileManager::readFileLines(QFile &file)
     return outStrings;
 }
 
+///gets a file name from its long path
 QString FileManager::readFileNameFromFP(QString filePath)
 {
     QFileInfo fileInfo(filePath);
@@ -103,6 +107,7 @@ QString FileManager::readFileNameFromFP(QString filePath)
     return fileName;
 }
 
+///sets and creates the current files of class to a vector of paths passed in
 void FileManager::setFiles(const std::vector<QString> &paths)
 {
     files.clear();
@@ -113,6 +118,7 @@ void FileManager::setFiles(const std::vector<QString> &paths)
     }
 }
 
+///removes a file from a txt file of paths
 void FileManager::removeFilePathFromFile(QFile& file, QString fileName)
 {
 

@@ -63,6 +63,7 @@ bool FileEditor::setIsWavProcessed(bool val)
     isWavProcessed = val;
 }
 
+///resets the bool vals of class
 void FileEditor::resetEdit()
 {
 
@@ -73,6 +74,7 @@ void FileEditor::resetEdit()
     currentFileEdit = nullptr;
 }
 
+///opens a new file and filters it based on bitrate. If sucessful return true. Will warn if user has unsaved changes.
 bool FileEditor::OpenFileToEdit(QString filePath)
 {
     qDebug() << changesMade << ":" << warnedSave;

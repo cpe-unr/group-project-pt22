@@ -1,4 +1,4 @@
 /home/pearson/CS202/yes-16-bit-mono.wav
 /home/pearson/CS202/yes-8bit-mono.wav
-/home/pearson/CS202/Team/wwww.wav
-/home/pearson/CS202/Team/group-project-pt22/build-WavProcessor-Desktop_Qt_5_15_2_GCC_64bit-Debug/qqqqq.wav
+/home/pearson/CS202/yes-8-bit-stereo.wav
+/home/pearson/CS202/yes-26-bit-stereo.wav

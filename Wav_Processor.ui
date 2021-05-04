@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
-    <height>619</height>
+    <width>319</width>
+    <height>663</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -135,7 +135,7 @@
       <x>10</x>
       <y>320</y>
       <width>291</width>
-      <height>221</height>
+      <height>251</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -551,6 +551,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="ExportDataToCSVButton">
+       <property name="text">
+        <string>Export Metadata to CSV</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="ApplyMetadataButton">
        <property name="text">
         <string>Apply Metadata</string>
@@ -598,7 +605,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>320</width>
+     <width>319</width>
      <height>22</height>
     </rect>
    </property>

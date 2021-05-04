@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Wav_Processor_t {
-    QByteArrayData data[18];
-    char stringdata0[355];
+    QByteArrayData data[19];
+    char stringdata0[388];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -49,7 +49,8 @@ QT_MOC_LITERAL(13, 235, 30), // "on_ApplyMetadataButton_clicked"
 QT_MOC_LITERAL(14, 266, 21), // "on_PlayButton_clicked"
 QT_MOC_LITERAL(15, 288, 21), // "on_OpenButton_clicked"
 QT_MOC_LITERAL(16, 310, 21), // "on_SaveButton_clicked"
-QT_MOC_LITERAL(17, 332, 22) // "on_ApplyButton_clicked"
+QT_MOC_LITERAL(17, 332, 22), // "on_ApplyButton_clicked"
+QT_MOC_LITERAL(18, 355, 32) // "on_ExportDataToCSVButton_clicked"
 
     },
     "Wav_Processor\0on_FileButton_clicked\0"
@@ -61,7 +62,8 @@ QT_MOC_LITERAL(17, 332, 22) // "on_ApplyButton_clicked"
     "current\0previous\0on_EditMetadataButton_clicked\0"
     "on_ApplyMetadataButton_clicked\0"
     "on_PlayButton_clicked\0on_OpenButton_clicked\0"
-    "on_SaveButton_clicked\0on_ApplyButton_clicked"
+    "on_SaveButton_clicked\0on_ApplyButton_clicked\0"
+    "on_ExportDataToCSVButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -71,7 +73,7 @@ static const uint qt_meta_data_Wav_Processor[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -79,18 +81,19 @@ static const uint qt_meta_data_Wav_Processor[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   74,    2, 0x08 /* Private */,
-       3,    0,   75,    2, 0x08 /* Private */,
-       4,    1,   76,    2, 0x08 /* Private */,
-       7,    0,   79,    2, 0x08 /* Private */,
-       8,    0,   80,    2, 0x08 /* Private */,
-       9,    2,   81,    2, 0x08 /* Private */,
-      12,    0,   86,    2, 0x08 /* Private */,
-      13,    0,   87,    2, 0x08 /* Private */,
-      14,    0,   88,    2, 0x08 /* Private */,
-      15,    0,   89,    2, 0x08 /* Private */,
-      16,    0,   90,    2, 0x08 /* Private */,
-      17,    0,   91,    2, 0x08 /* Private */,
+       1,    0,   79,    2, 0x08 /* Private */,
+       3,    0,   80,    2, 0x08 /* Private */,
+       4,    1,   81,    2, 0x08 /* Private */,
+       7,    0,   84,    2, 0x08 /* Private */,
+       8,    0,   85,    2, 0x08 /* Private */,
+       9,    2,   86,    2, 0x08 /* Private */,
+      12,    0,   91,    2, 0x08 /* Private */,
+      13,    0,   92,    2, 0x08 /* Private */,
+      14,    0,   93,    2, 0x08 /* Private */,
+      15,    0,   94,    2, 0x08 /* Private */,
+      16,    0,   95,    2, 0x08 /* Private */,
+      17,    0,   96,    2, 0x08 /* Private */,
+      18,    0,   97,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -99,6 +102,7 @@ static const uint qt_meta_data_Wav_Processor[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 5, 0x80000000 | 5,   10,   11,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -127,6 +131,7 @@ void Wav_Processor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 9: _t->on_OpenButton_clicked(); break;
         case 10: _t->on_SaveButton_clicked(); break;
         case 11: _t->on_ApplyButton_clicked(); break;
+        case 12: _t->on_ExportDataToCSVButton_clicked(); break;
         default: ;
         }
     }
@@ -161,13 +166,13 @@ int Wav_Processor::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 13)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 12;
+        _id -= 13;
     }
     return _id;
 }

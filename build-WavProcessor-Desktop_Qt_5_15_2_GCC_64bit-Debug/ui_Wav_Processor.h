@@ -101,6 +101,7 @@ public:
     QFrame *frame_AlbumName;
     QLabel *AlbumName;
     QPushButton *EditMetadataButton;
+    QPushButton *ExportDataToCSVButton;
     QPushButton *ApplyMetadataButton;
     QPushButton *PlayButton;
     QWidget *horizontalLayoutWidget;
@@ -115,7 +116,7 @@ public:
     {
         if (Wav_Processor->objectName().isEmpty())
             Wav_Processor->setObjectName(QString::fromUtf8("Wav_Processor"));
-        Wav_Processor->resize(320, 619);
+        Wav_Processor->resize(319, 663);
         centralwidget = new QWidget(Wav_Processor);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         FilesLayoutWidget = new QWidget(centralwidget);
@@ -214,7 +215,7 @@ public:
         verticalWidget = new QWidget(centralwidget);
         verticalWidget->setObjectName(QString::fromUtf8("verticalWidget"));
         verticalWidget->setEnabled(true);
-        verticalWidget->setGeometry(QRect(10, 320, 291, 221));
+        verticalWidget->setGeometry(QRect(10, 320, 291, 251));
         verticalLayout_5 = new QVBoxLayout(verticalWidget);
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
         MetadataLineEditLayout = new QWidget(verticalWidget);
@@ -446,6 +447,11 @@ public:
 
         verticalLayout_5->addWidget(EditMetadataButton);
 
+        ExportDataToCSVButton = new QPushButton(verticalWidget);
+        ExportDataToCSVButton->setObjectName(QString::fromUtf8("ExportDataToCSVButton"));
+
+        verticalLayout_5->addWidget(ExportDataToCSVButton);
+
         ApplyMetadataButton = new QPushButton(verticalWidget);
         ApplyMetadataButton->setObjectName(QString::fromUtf8("ApplyMetadataButton"));
 
@@ -475,7 +481,7 @@ public:
         Wav_Processor->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Wav_Processor);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 320, 22));
+        menubar->setGeometry(QRect(0, 0, 319, 22));
         Wav_Processor->setMenuBar(menubar);
         statusbar = new QStatusBar(Wav_Processor);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -523,6 +529,7 @@ public:
         AlbumName_3->setText(QCoreApplication::translate("Wav_Processor", "Album Name: ", nullptr));
         AlbumName->setText(QString());
         EditMetadataButton->setText(QCoreApplication::translate("Wav_Processor", "Edit Metadata", nullptr));
+        ExportDataToCSVButton->setText(QCoreApplication::translate("Wav_Processor", "Export Metadata to CSV", nullptr));
         ApplyMetadataButton->setText(QCoreApplication::translate("Wav_Processor", "Apply Metadata", nullptr));
         PlayButton->setText(QCoreApplication::translate("Wav_Processor", "Play File", nullptr));
         FileButton->setText(QCoreApplication::translate("Wav_Processor", "Files", nullptr));
