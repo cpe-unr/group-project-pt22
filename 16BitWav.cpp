@@ -17,7 +17,7 @@ void BitWav16::readFile(const QString &filePath)
 			file.read((char*)&waveHeader, sizeof(wavStructure));
 			BitWav16::buffer = new signed short[waveHeader.data_bytes];
 			file.read((char*)BitWav16::buffer, waveHeader.data_bytes);
-			getMetaData(file);
+            //getMetaData(file);
 			file.close();
 		}
 }
@@ -31,7 +31,7 @@ void BitWav16::writeFile(const QString &outFilePath)
     ofstream file(outfp, ios::binary | ios::out);
 	file.write((char*)&waveHeader, sizeof(wavStructure));
 	file.write((char*)BitWav16::buffer, waveHeader.data_bytes);
-	writeMetaData(file);
+    //writeMetaData(file);
 	file.close();
 }
 

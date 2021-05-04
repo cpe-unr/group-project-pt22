@@ -198,7 +198,6 @@ void Wav_Processor::on_OpenButton_clicked()
     info.setFile(*outFile.at(currentIdx));
     if(!ui->DockedFiles->isItemSelected(SelectedDockedItem) || !edit.OpenFileToEdit(info.filePath())) return;
 
-
     ui->AlbumName->setText(edit.getCurrentFileEdit()->metaDisplayer("IPRD"));
     ui->ArtistName->setText(edit.getCurrentFileEdit()->metaDisplayer("IART"));
     ui->Comments->setText(edit.getCurrentFileEdit()->metaDisplayer("ICMT"));
@@ -295,7 +294,7 @@ void Wav_Processor::on_SaveButton_clicked()
 
          //edit.getCurrentFileEdit()->writeFile(info.filePath());
     }
-
+    updateFileList();
 
     edit.setChangesMade(false);
 }
