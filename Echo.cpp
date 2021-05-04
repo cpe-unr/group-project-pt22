@@ -6,10 +6,27 @@ Echo::Echo(int delay){
 
 void Echo::processBuffer(unsigned char* buffer, int bufferSize){
 	int i = 0;
-	for(i;buffer[i] != '\0'; i++){
+	for(i;i < bufferSize; i++){
 		if(i - delay >= 0){	
-			bufferSize = 0.5*(buffer[i] + buffer[i - delay]);
+			buffer[i] = 0.75*(buffer[i]) + 0.25*(buffer[i - delay]);
 		};
 	};
 };
 
+void Echo::processBuffer(signed int* buffer, int bufferSize){
+	int i = 0;
+	for(i;i < bufferSize; i++){
+		if(i - delay >= 0){	
+			buffer[i] = 0.75*(buffer[i]) + 0.25*(buffer[i - delay]);
+		};
+	};
+};
+
+void Echo::processBuffer(signed short int* buffer, int bufferSize){
+	int i = 0;
+	for(i;i < bufferSize; i++){
+		if(i - delay >= 0){	
+			buffer[i] = 0.75*(buffer[i]) + 0.25*(buffer[i - delay]);
+		};
+	};
+};
