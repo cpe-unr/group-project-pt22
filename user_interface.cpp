@@ -217,7 +217,6 @@ void Wav_Processor::on_SaveButton_clicked()
         {
             case 8:{
 
-                qDebug() << "test4";
                 BitWav8* wav = new BitWav8();
 
                 wav->readFile("ProcessorFiles/WavFiles/Editing.wav");
@@ -226,9 +225,13 @@ void Wav_Processor::on_SaveButton_clicked()
             break;}
 
             case 16:{
+                qDebug() << "STest1";
                 BitWav16* wav = new BitWav16();
+                qDebug() << "STest2";
                 wav->readFile(info.filePath());
-               // NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+                qDebug() << "STest3";
+                wav->writeFile(newPath);
+               //NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
                 //LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
                // EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
                 break;}
@@ -236,6 +239,7 @@ void Wav_Processor::on_SaveButton_clicked()
             case 32:{
                 BitWav32* wav = new BitWav32();
                 wav->readFile(info.filePath());
+                wav->writeFile(newPath);
                 //NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
                // LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
                // EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
@@ -295,19 +299,31 @@ void Wav_Processor::on_ApplyButton_clicked()
         break;}
 
         case 16:{
+
+            qDebug() << "ATest1";
             BitWav16* wav = new BitWav16();
             wav->readFile(info.filePath());
-           // NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
-            //LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
-           // EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+            qDebug() << "ATest2";
+            NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+            qDebug() << "ATest3";
+            LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+            qDebug() << "ATest4";
+            EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+            qDebug() << "ATest5";
+
+            wav->writeFile(QDir("ProcessorFiles/WavFiles/Editing.wav").path());
+
+            qDebug() << "ATest6";
             break;}
 
         case 32:{
             BitWav32* wav = new BitWav32();
             wav->readFile(info.filePath());
-            //NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
-           // LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
-           // EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+            NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+            LimitProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+            EchoProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
+
+            wav->writeFile(QDir("ProcessorFiles/WavFiles/Editing.wav").path());
             break;}
     }
 

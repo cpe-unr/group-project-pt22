@@ -12,11 +12,11 @@ class Echo : public iProcessor {
 public:
 
 	Echo();
-	Echo(int delay);
+    Echo(int newDelay);
 
 	void processBuffer(unsigned char* buffer, int bufferSize);
 	void processBuffer(signed int* buffer, int bufferSize);
-	void processBuffer(signed short int* buffer, int bufferSize);
+    void processBuffer(signed short int* buffer, int bufferSize);
 
 };
 
