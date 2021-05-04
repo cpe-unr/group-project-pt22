@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class BitWav8 :  public WavFile
+class BitWav8 :  public WavFile ///inherits from the wavfile class
 {
 public:
     void readFile(const QString &filePath) override;

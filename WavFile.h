@@ -12,15 +12,18 @@
 #include <QString>
 using namespace std;
 
-class WavFile
+class WavFile///first class that is inherited from for the certain bit wav
 {
 public:
-
+	///retun buffer size
 	int getBufferSize() const
 	{
 		return waveHeader.data_bytes;
 	}
 
+	/**This function would loop through the vector until to either find a match
+	 * or return a blank string
+	 */
     QString metaDisplayer(const QString &iName)
     {
         string tempS;
@@ -46,6 +49,11 @@ public:
         }
             return "";
     }
+
+    /**reads the file after the wav for the meta data information
+     * and creates a data structure for the meta data when it finds it
+     */
+
 	void getMetaData(ifstream &file)
 	{
 		int i = 0;
@@ -70,6 +78,10 @@ public:
 		}while(i < metaHeader.totalByte);
 
 	}
+	/**Checks the vector to see if a metadata input exist before hand.
+	 * If it does not, it will create a new metastructure in order to hold the new
+	 * information.
+	 */
     void changeMetaData(const QString &iName, const QString &metaInfo)
 	{
         string iN = iName.toStdString();
@@ -107,6 +119,11 @@ public:
 		metaStruc.push_back(temp);
 
 	}
+    /**This would write the metadata back in the order it was obtained
+     * it will stop once the vector is at its end, and delete the pointer every
+     * time it loops through.
+     */
+
 	void writeMetaData(ofstream &file)
 	{
 		string temp = metaStruc[0]->metaDataChunk;
@@ -119,16 +136,16 @@ public:
 		}
 	}
 
-    virtual void readFile(const QString &filePath) = 0;
+    virtual void readFile(const QString &filePath) = 0;///abstract function to override
 
-    virtual void writeFile(const QString &outFilePath) = 0;
-    wavStructure waveHeader;
+    virtual void writeFile(const QString &outFilePath) = 0;///abstract function to override
+    wavStructure waveHeader;//public information about the wav file ex byte rate
 
 
 private:
-	metaDataHeader metaHeader;
-	vector<metaStructure*> metaStruc;
-	vector<string> metaChunk_value;
+	metaDataHeader metaHeader;///used to hold list, total byte, and info
+	vector<metaStructure*> metaStruc;///holds the metadata type and bytes
+	vector<string> metaChunk_value;///holds the actual value of the metadata
 };
 
 #endif
