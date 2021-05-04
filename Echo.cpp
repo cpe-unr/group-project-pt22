@@ -7,6 +7,7 @@ Echo::Echo(int newDelay){
 
 void Echo::processBuffer(unsigned char* buffer, int bufferSize){
 
+    ///@param i, index for iteration.
     int i = 0;
 	for(i;i < bufferSize; i++){
 		if(i - delay >= 0){	

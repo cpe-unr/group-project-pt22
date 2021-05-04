@@ -1,10 +1,12 @@
 #include "Limiter.h"
 
-Limiter::Limiter(int lim){
-        lim = lim;
+Limiter::Limiter(int newLim){
+        lim = newLim;
 };
 
 void Limiter::processBuffer(unsigned char* buffer, int bufferSize){
+	
+	///@param i, index for iteration.
 	int i = 0;
 	for(i;buffer[i] != '\0'; i++){
   		if(buffer[i] >= (lim*128)+128){
