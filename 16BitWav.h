@@ -4,7 +4,7 @@
 #include "WavFile.h"
 
 
-class BitWav16 : public WavFile
+class BitWav16 : public WavFile///inherits from the wavfile class
 {
 public:
     void readFile(const QString &filePath) override;

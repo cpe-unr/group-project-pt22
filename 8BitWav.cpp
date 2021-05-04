@@ -7,6 +7,7 @@
 
 using namespace std;
 
+///this function reads all the information from the wav file.
 void BitWav8::readFile(const QString &filePath)
 {
     string fp = filePath.toStdString();
@@ -22,6 +23,7 @@ void BitWav8::readFile(const QString &filePath)
 		}
 }
 
+///This function writes all the information into the wav file.
 void BitWav8::writeFile(const QString &outFilePath)
 {
     string outfp = outFilePath.toStdString();
@@ -31,7 +33,7 @@ void BitWav8::writeFile(const QString &outFilePath)
 	writeMetaData(file);
 	file.close();
 }
-
+///this function returns the song portion of the wav file.
 unsigned char *BitWav8::getBuffer()
 {
 	return BitWav8::buffer;
