@@ -1,2 +1,0 @@
-/home/pearson/CS202/yes-8bit-mono.wav
-/home/pearson/CS202/yes-16-bit-mono.wav
