@@ -15,6 +15,8 @@ public:
 	Limiter(int lim);
 
 	void processBuffer(unsigned char* buffer, int bufferSize);
+	void processBuffer(signed int* buffer, int bufferSize);
+	void processBuffer(signed short int* buffer, int bufferSize);
 
 };
 
