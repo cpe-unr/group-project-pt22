@@ -1,5 +1,0 @@
-/home/pearson/CS202/Team/group-project-pt22/build-WavProcessor-Desktop_Qt_5_15_2_GCC_64bit-Debug/ProcessorFiles/WavFiles/Editing.wav
-/home/pearson/CS202/yes-8bit-mono.wav
-/home/pearson/CS202/tester.wav.wav
-/home/pearson/CS202/test3.wav
-/home/pearson/CS202/new.wav
