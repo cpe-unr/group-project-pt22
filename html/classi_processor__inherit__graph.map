@@ -1,6 +1,0 @@
-<map id="iProcessor" name="iProcessor">
-<area shape="rect" id="node1" title=" " alt="" coords="71,5,155,32"/>
-<area shape="rect" id="node2" href="$class_echo.html" title=" " alt="" coords="5,80,57,107"/>
-<area shape="rect" id="node3" href="$class_limiter.html" title=" " alt="" coords="82,80,143,107"/>
-<area shape="rect" id="node4" href="$class_normalizer.html" title=" " alt="" coords="168,80,252,107"/>
-</map>
