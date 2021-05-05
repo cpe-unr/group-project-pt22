@@ -197,14 +197,48 @@ void Wav_Processor::on_OpenButton_clicked()
     QFileInfo info;
     info.setFile(*outFile.at(currentIdx));
     if(!ui->DockedFiles->isItemSelected(SelectedDockedItem) || !edit.OpenFileToEdit(info.filePath())) return;
+    switch(edit.getCurrentFileEdit()->waveHeader.bit_depth)
+    {
+           case 8:{
 
-    ui->AlbumName->setText(edit.getCurrentFileEdit()->metaDisplayer("IPRD"));
-    ui->ArtistName->setText(edit.getCurrentFileEdit()->metaDisplayer("IART"));
-    ui->Comments->setText(edit.getCurrentFileEdit()->metaDisplayer("ICMT"));
-    ui->Genre->setText(edit.getCurrentFileEdit()->metaDisplayer("IGNR"));
-    ui->ReleaseYear->setText(edit.getCurrentFileEdit()->metaDisplayer("ICRD"));
-    ui->Track->setText(edit.getCurrentFileEdit()->metaDisplayer("INAM"));
-    ui->TrackNumber->setText(edit.getCurrentFileEdit()->metaDisplayer("ITRK"));
+                BitWav8* wav = new BitWav8();
+                wav->readFile(info.filePath());
+
+                ui->AlbumName->setText(wav->metaDisplayer("IPRD"));
+                ui->ArtistName->setText(wav->metaDisplayer("IART"));
+                ui->Comments->setText(wav->metaDisplayer("ICMT"));
+                ui->Genre->setText(wav->metaDisplayer("IGNR"));
+                ui->ReleaseYear->setText(wav->metaDisplayer("ICRD"));
+                ui->Track->setText(wav->metaDisplayer("INAM"));
+                ui->TrackNumber->setText(wav->metaDisplayer("ITRK"));
+           break;}
+
+           case 16:{
+               BitWav16* wav = new BitWav16();
+               wav->readFile(info.filePath());
+
+               ui->AlbumName->setText(wav->metaDisplayer("IPRD"));
+               ui->ArtistName->setText(wav->metaDisplayer("IART"));
+               ui->Comments->setText(wav->metaDisplayer("ICMT"));
+               ui->Genre->setText(wav->metaDisplayer("IGNR"));
+               ui->ReleaseYear->setText(wav->metaDisplayer("ICRD"));
+               ui->Track->setText(wav->metaDisplayer("INAM"));
+               ui->TrackNumber->setText(wav->metaDisplayer("ITRK"));
+               break;}
+
+           case 32:{
+               BitWav32* wav = new BitWav32();
+               wav->readFile(info.filePath());
+
+               ui->AlbumName->setText(wav->metaDisplayer("IPRD"));
+               ui->ArtistName->setText(wav->metaDisplayer("IART"));
+               ui->Comments->setText(wav->metaDisplayer("ICMT"));
+               ui->Genre->setText(wav->metaDisplayer("IGNR"));
+               ui->ReleaseYear->setText(wav->metaDisplayer("ICRD"));
+               ui->Track->setText(wav->metaDisplayer("INAM"));
+               ui->TrackNumber->setText(wav->metaDisplayer("ITRK"));
+               break;}
+       }
 
     ui->PlayButton->setVisible(true);
     ui->PlayButton->setText("Play: " + info.fileName());
@@ -222,7 +256,6 @@ void Wav_Processor::on_SaveButton_clicked()
     if(!edit.getIsEditing()) return;
 
     QFile writeFile;
-    qDebug() << "test0";
     int currentIdx = ui->DockedFiles->row(SelectedDockedItem);
     std::vector<QFile*> outFile = fileM->getFiles();
     QFileInfo info;
@@ -322,12 +355,10 @@ void Wav_Processor::on_ApplyButton_clicked()
     iProcessor *EchoProcessor = new Echo(echoVal);
 
 
-    qDebug() << echoVal;
     switch(edit.getCurrentFileEdit()->waveHeader.bit_depth)
     {
         case 8:{
 
-            qDebug() << "test4";
             BitWav8* wav = new BitWav8();
 
             wav->readFile(info.filePath());
@@ -341,7 +372,6 @@ void Wav_Processor::on_ApplyButton_clicked()
 
         case 16:{
 
-            qDebug() << "ATest1";
             BitWav16* wav = new BitWav16();
             wav->readFile(info.filePath());
             NormalProcessor->processBuffer(wav->getBuffer(), wav->getBufferSize());
