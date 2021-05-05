@@ -1,0 +1,35 @@
+\hypertarget{classFileManager}{}\doxysection{File\+Manager Class Reference}
+\label{classFileManager}\index{FileManager@{FileManager}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classFileManager_a8afd512c06be9daf140cc19d71f9b391}\label{classFileManager_a8afd512c06be9daf140cc19d71f9b391}} 
+\mbox{\hyperlink{classFileManager_a8afd512c06be9daf140cc19d71f9b391}{File\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Constructor that creates a directory and txt file to store file paths if not already created. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classFileManager_aff74ed4d2bfa878321743811a42695e1}\label{classFileManager_aff74ed4d2bfa878321743811a42695e1}} 
+void \mbox{\hyperlink{classFileManager_aff74ed4d2bfa878321743811a42695e1}{create\+File}} (Q\+String Directory, Q\+String File\+Name)
+\begin{DoxyCompactList}\small\item\em creates a new file in a directory \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classFileManager_a6c13f3e1d88f18e5980fd9f3baacb8f2}\label{classFileManager_a6c13f3e1d88f18e5980fd9f3baacb8f2}} 
+bool \mbox{\hyperlink{classFileManager_a6c13f3e1d88f18e5980fd9f3baacb8f2}{save\+File\+Path}} (Q\+File \&write\+File, Q\+String file\+Path, Q\+String file\+Type)
+\begin{DoxyCompactList}\small\item\em Saves a file path of a file type into a txt file that stores paths. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classFileManager_a2202a5874e6a4a2ccc38bb78112dfcfe}\label{classFileManager_a2202a5874e6a4a2ccc38bb78112dfcfe}} 
+std\+::vector$<$ Q\+File $\ast$ $>$ {\bfseries get\+Files} ()
+\item 
+\mbox{\Hypertarget{classFileManager_a79d5583dbd5951a726c309aeab3bccff}\label{classFileManager_a79d5583dbd5951a726c309aeab3bccff}} 
+void \mbox{\hyperlink{classFileManager_a79d5583dbd5951a726c309aeab3bccff}{set\+Files}} (const std\+::vector$<$ Q\+String $>$ \&paths)
+\begin{DoxyCompactList}\small\item\em sets and creates the current files of class to a vector of paths passed in \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classFileManager_ace1b71bbc30647c4cb40ea5e71944b03}\label{classFileManager_ace1b71bbc30647c4cb40ea5e71944b03}} 
+std\+::vector$<$ Q\+String $>$ \mbox{\hyperlink{classFileManager_ace1b71bbc30647c4cb40ea5e71944b03}{read\+File\+Lines}} (Q\+File \&file)
+\begin{DoxyCompactList}\small\item\em returns out each line in a current file \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classFileManager_af3b98d0f89174370350d9ebb3f0229ed}\label{classFileManager_af3b98d0f89174370350d9ebb3f0229ed}} 
+Q\+String \mbox{\hyperlink{classFileManager_af3b98d0f89174370350d9ebb3f0229ed}{read\+File\+Name\+From\+FP}} (Q\+String file\+Path)
+\begin{DoxyCompactList}\small\item\em gets a file name from its long path \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classFileManager_a878ef32e19712a450032975b4ac74e1f}\label{classFileManager_a878ef32e19712a450032975b4ac74e1f}} 
+void \mbox{\hyperlink{classFileManager_a878ef32e19712a450032975b4ac74e1f}{remove\+File\+Path\+From\+File}} (Q\+File \&file, Q\+String file\+Name)
+\begin{DoxyCompactList}\small\item\em removes a file from a txt file of paths \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+filemanager.\+h\item 
+filemanager.\+cpp\end{DoxyCompactItemize}

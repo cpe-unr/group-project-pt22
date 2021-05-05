@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['data_5fbytes_16',['data_bytes',['../structwav_structure.html#a68d37f1264af7e331e5fe487b4808d43',1,'wavStructure']]],
-  ['data_5fheader_17',['data_header',['../structwav_structure.html#a2dfe6562d13aedc0992a90d6a1987919',1,'wavStructure']]]
+  ['limiter_13',['Limiter',['../classLimiter.html',1,'Limiter'],['../classLimiter.html#aeb9287deaa87e9a6ad9658990cde09fe',1,'Limiter::Limiter()'],['../classLimiter.html#ad0202122620f2daa00e5f00cf3ac8ee7',1,'Limiter::Limiter(int newLim)']]]
 ];

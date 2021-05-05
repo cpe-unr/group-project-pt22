@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['limiter_44',['Limiter',['../class_limiter.html',1,'Limiter'],['../class_limiter.html#aeb9287deaa87e9a6ad9658990cde09fe',1,'Limiter::Limiter()'],['../class_limiter.html#ad0202122620f2daa00e5f00cf3ac8ee7',1,'Limiter::Limiter(int newLim)']]],
-  ['limiter_2ecpp_45',['Limiter.cpp',['../_limiter_8cpp.html',1,'']]],
-  ['limiter_2eh_46',['Limiter.h',['../_limiter_8h.html',1,'']]],
-  ['list_47',['list',['../structmeta_data_header.html#a50d7e17da2afaad62d17460ad75f6eaa',1,'metaDataHeader']]]
+  ['readfile_23',['readFile',['../classBitWav16.html#af12d9dcc3d095b6b1f6776c709902b38',1,'BitWav16::readFile()'],['../classBitWav8.html#a1980b85402542f654ec58b59bc955222',1,'BitWav8::readFile()']]],
+  ['readfilelines_24',['readFileLines',['../classFileManager.html#ace1b71bbc30647c4cb40ea5e71944b03',1,'FileManager']]],
+  ['readfilenamefromfp_25',['readFileNameFromFP',['../classFileManager.html#af3b98d0f89174370350d9ebb3f0229ed',1,'FileManager']]],
+  ['removefilepathfromfile_26',['removeFilePathFromFile',['../classFileManager.html#a878ef32e19712a450032975b4ac74e1f',1,'FileManager']]],
+  ['resetedit_27',['resetEdit',['../classFileEditor.html#a2e3813d8366b70c51242700595be0517',1,'FileEditor']]]
 ];

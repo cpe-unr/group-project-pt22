@@ -1,0 +1,80 @@
+\hypertarget{classWavFile}{}\doxysection{Wav\+File Class Reference}
+\label{classWavFile}\index{WavFile@{WavFile}}
+
+
+first class that is inherited from for the certain bit wav  
+
+
+
+
+{\ttfamily \#include $<$Wav\+File.\+h$>$}
+
+
+
+Inheritance diagram for Wav\+File\+:
+% FIG 0
+
+
+Collaboration diagram for Wav\+File\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classWavFile_aced9840645cf59cffc1c96f0d44575fe}\label{classWavFile_aced9840645cf59cffc1c96f0d44575fe}} 
+int \mbox{\hyperlink{classWavFile_aced9840645cf59cffc1c96f0d44575fe}{get\+Buffer\+Size}} () const
+\begin{DoxyCompactList}\small\item\em retun buffer size \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{classWavFile_a8546587c4634427a01cb93b71049c9b3}{meta\+Displayer}} (const Q\+String \&i\+Name)
+\item 
+void \mbox{\hyperlink{classWavFile_acded047aac7b1edb475c420df64c8813}{get\+Meta\+Data}} (ifstream \&file)
+\item 
+void \mbox{\hyperlink{classWavFile_a8e09275397a6c19b505c764f894df8c9}{change\+Meta\+Data}} (const Q\+String \&i\+Name, const Q\+String \&meta\+Info)
+\item 
+void \mbox{\hyperlink{classWavFile_a0c9e90277fe4afdf0be643602beaa15b}{write\+Meta\+Data}} (ofstream \&file)
+\item 
+\mbox{\Hypertarget{classWavFile_a7c51d250ebb10fc052ef7029fb3f816b}\label{classWavFile_a7c51d250ebb10fc052ef7029fb3f816b}} 
+virtual void {\bfseries read\+File} (const Q\+String \&file\+Path)=0
+\item 
+\mbox{\Hypertarget{classWavFile_a2915224c87108c7bccb8257b673f501a}\label{classWavFile_a2915224c87108c7bccb8257b673f501a}} 
+virtual void \mbox{\hyperlink{classWavFile_a2915224c87108c7bccb8257b673f501a}{write\+File}} (const Q\+String \&out\+File\+Path)=0
+\begin{DoxyCompactList}\small\item\em abstract function to override \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classWavFile_aed542422d0141a457e2b0a06514977ba}\label{classWavFile_aed542422d0141a457e2b0a06514977ba}} 
+\mbox{\hyperlink{structwavStructure}{wav\+Structure}} \mbox{\hyperlink{classWavFile_aed542422d0141a457e2b0a06514977ba}{wave\+Header}}
+\begin{DoxyCompactList}\small\item\em abstract function to override \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+first class that is inherited from for the certain bit wav 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWavFile_a8e09275397a6c19b505c764f894df8c9}\label{classWavFile_a8e09275397a6c19b505c764f894df8c9}} 
+\index{WavFile@{WavFile}!changeMetaData@{changeMetaData}}
+\index{changeMetaData@{changeMetaData}!WavFile@{WavFile}}
+\doxysubsubsection{\texorpdfstring{changeMetaData()}{changeMetaData()}}
+{\footnotesize\ttfamily void Wav\+File\+::change\+Meta\+Data (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{i\+Name,  }\item[{const Q\+String \&}]{meta\+Info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Checks the vector to see if a metadata input exist before hand. If it does not, it will create a new metastructure in order to hold the new information. \mbox{\Hypertarget{classWavFile_acded047aac7b1edb475c420df64c8813}\label{classWavFile_acded047aac7b1edb475c420df64c8813}} 
+\index{WavFile@{WavFile}!getMetaData@{getMetaData}}
+\index{getMetaData@{getMetaData}!WavFile@{WavFile}}
+\doxysubsubsection{\texorpdfstring{getMetaData()}{getMetaData()}}
+{\footnotesize\ttfamily void Wav\+File\+::get\+Meta\+Data (\begin{DoxyParamCaption}\item[{ifstream \&}]{file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+reads the file after the wav for the meta data information and creates a data structure for the meta data when it finds it \mbox{\Hypertarget{classWavFile_a8546587c4634427a01cb93b71049c9b3}\label{classWavFile_a8546587c4634427a01cb93b71049c9b3}} 
+\index{WavFile@{WavFile}!metaDisplayer@{metaDisplayer}}
+\index{metaDisplayer@{metaDisplayer}!WavFile@{WavFile}}
+\doxysubsubsection{\texorpdfstring{metaDisplayer()}{metaDisplayer()}}
+{\footnotesize\ttfamily Q\+String Wav\+File\+::meta\+Displayer (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{i\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This function would loop through the vector until to either find a match or return a blank string \mbox{\Hypertarget{classWavFile_a0c9e90277fe4afdf0be643602beaa15b}\label{classWavFile_a0c9e90277fe4afdf0be643602beaa15b}} 
+\index{WavFile@{WavFile}!writeMetaData@{writeMetaData}}
+\index{writeMetaData@{writeMetaData}!WavFile@{WavFile}}
+\doxysubsubsection{\texorpdfstring{writeMetaData()}{writeMetaData()}}
+{\footnotesize\ttfamily void Wav\+File\+::write\+Meta\+Data (\begin{DoxyParamCaption}\item[{ofstream \&}]{file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This would write the metadata back in the order it was obtained it will stop once the vector is at its end, and delete the pointer every time it loops through. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Wav\+File.\+h\end{DoxyCompactItemize}

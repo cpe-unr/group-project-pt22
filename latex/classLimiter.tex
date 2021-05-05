@@ -1,0 +1,80 @@
+\hypertarget{classLimiter}{}\doxysection{Limiter Class Reference}
+\label{classLimiter}\index{Limiter@{Limiter}}
+
+
+{\ttfamily \#include $<$Limiter.\+h$>$}
+
+
+
+Inheritance diagram for Limiter\+:
+% FIG 0
+
+
+Collaboration diagram for Limiter\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLimiter_aeb9287deaa87e9a6ad9658990cde09fe}\label{classLimiter_aeb9287deaa87e9a6ad9658990cde09fe}} 
+\mbox{\hyperlink{classLimiter_aeb9287deaa87e9a6ad9658990cde09fe}{Limiter}} ()
+\begin{DoxyCompactList}\small\item\em Creates the class constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLimiter_ad0202122620f2daa00e5f00cf3ac8ee7}{Limiter}} (int new\+Lim)
+\item 
+void \mbox{\hyperlink{classLimiter_a226a4a5c3890a5dfbe35220595c3df2b}{process\+Buffer}} (unsigned char $\ast$buffer, int buffer\+Size)
+\begin{DoxyCompactList}\small\item\em This function constructs the process\+Buffer function for limiting 8 bit audio. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLimiter_a90d620c3c82afb4d3cda09eeb7bbdf9d}\label{classLimiter_a90d620c3c82afb4d3cda09eeb7bbdf9d}} 
+void \mbox{\hyperlink{classLimiter_a90d620c3c82afb4d3cda09eeb7bbdf9d}{process\+Buffer}} (signed int $\ast$buffer, int buffer\+Size)
+\begin{DoxyCompactList}\small\item\em This function constructs the process\+Buffer function for limiting 16 bit. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLimiter_a567eae08a9ea36fc2ecf15e4f5dcf052}\label{classLimiter_a567eae08a9ea36fc2ecf15e4f5dcf052}} 
+void \mbox{\hyperlink{classLimiter_a567eae08a9ea36fc2ecf15e4f5dcf052}{process\+Buffer}} (signed short $\ast$buffer, int buffer\+Size)
+\begin{DoxyCompactList}\small\item\em This function constructs the process\+Buffer function for limiting 16 bit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+/$\ast$\+This class inherits from the \mbox{\hyperlink{classiProcessor}{i\+Processor}} class to override process\+Buffer. /$\ast$ The \mbox{\hyperlink{classLimiter}{Limiter}} Class takes audio and caps loudness to a certain volume. /$\ast$
+\begin{DoxyParams}{Parameters}
+{\em lim,a} & percentage value, used to find the limit in 8 or 16 bit. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLimiter_ad0202122620f2daa00e5f00cf3ac8ee7}\label{classLimiter_ad0202122620f2daa00e5f00cf3ac8ee7}} 
+\index{Limiter@{Limiter}!Limiter@{Limiter}}
+\index{Limiter@{Limiter}!Limiter@{Limiter}}
+\doxysubsubsection{\texorpdfstring{Limiter()}{Limiter()}}
+{\footnotesize\ttfamily Limiter\+::\+Limiter (\begin{DoxyParamCaption}\item[{int}]{new\+Lim }\end{DoxyParamCaption})}
+
+Constructs \mbox{\hyperlink{classLimiter}{Limiter}}. 
+\begin{DoxyParams}{Parameters}
+{\em new\+Lim,replaces} & lim. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classLimiter_a226a4a5c3890a5dfbe35220595c3df2b}\label{classLimiter_a226a4a5c3890a5dfbe35220595c3df2b}} 
+\index{Limiter@{Limiter}!processBuffer@{processBuffer}}
+\index{processBuffer@{processBuffer}!Limiter@{Limiter}}
+\doxysubsubsection{\texorpdfstring{processBuffer()}{processBuffer()}}
+{\footnotesize\ttfamily void Limiter\+::process\+Buffer (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+This function constructs the process\+Buffer function for limiting 8 bit audio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i,index} & for iteration.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classiProcessor_ad1a215189170decdf3f99b73494ce9dd}{i\+Processor}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Limiter.\+h\item 
+Limiter.\+cpp\end{DoxyCompactItemize}

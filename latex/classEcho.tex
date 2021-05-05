@@ -1,0 +1,80 @@
+\hypertarget{classEcho}{}\doxysection{Echo Class Reference}
+\label{classEcho}\index{Echo@{Echo}}
+
+
+{\ttfamily \#include $<$Echo.\+h$>$}
+
+
+
+Inheritance diagram for Echo\+:
+% FIG 0
+
+
+Collaboration diagram for Echo\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEcho_ababd42898feed0775f5234d53fe9bff1}\label{classEcho_ababd42898feed0775f5234d53fe9bff1}} 
+\mbox{\hyperlink{classEcho_ababd42898feed0775f5234d53fe9bff1}{Echo}} ()
+\begin{DoxyCompactList}\small\item\em Creates the class constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEcho_a28d71de619dda9e6e51567a04bfb60d6}{Echo}} (int new\+Delay)
+\item 
+void \mbox{\hyperlink{classEcho_af018d3d63e8c58e2d5d9b719558e6c0c}{process\+Buffer}} (unsigned char $\ast$buffer, int buffer\+Size)
+\begin{DoxyCompactList}\small\item\em This function constructs the process\+Buffer function for echoing 8 bit audio. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEcho_ae8e740f76792ef3ae04f4f7472cc4bf7}\label{classEcho_ae8e740f76792ef3ae04f4f7472cc4bf7}} 
+void \mbox{\hyperlink{classEcho_ae8e740f76792ef3ae04f4f7472cc4bf7}{process\+Buffer}} (signed int $\ast$buffer, int buffer\+Size)
+\begin{DoxyCompactList}\small\item\em This function constructs the process\+Buffer function for echoing 16 bit. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEcho_ac67ccd8a2fc8b50db1259a60169c47d7}\label{classEcho_ac67ccd8a2fc8b50db1259a60169c47d7}} 
+void \mbox{\hyperlink{classEcho_ac67ccd8a2fc8b50db1259a60169c47d7}{process\+Buffer}} (signed short $\ast$buffer, int buffer\+Size)
+\begin{DoxyCompactList}\small\item\em This function constructs the process\+Buffer function for echoing 16 bit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+/$\ast$\+This class inherits from the \mbox{\hyperlink{classiProcessor}{i\+Processor}} class to override process\+Buffer. /$\ast$ The \mbox{\hyperlink{classEcho}{Echo}} Class takes audio and repeats it dealyed with a taper. /$\ast$
+\begin{DoxyParams}{Parameters}
+{\em delay,defines} & how long until the echo begins. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEcho_a28d71de619dda9e6e51567a04bfb60d6}\label{classEcho_a28d71de619dda9e6e51567a04bfb60d6}} 
+\index{Echo@{Echo}!Echo@{Echo}}
+\index{Echo@{Echo}!Echo@{Echo}}
+\doxysubsubsection{\texorpdfstring{Echo()}{Echo()}}
+{\footnotesize\ttfamily Echo\+::\+Echo (\begin{DoxyParamCaption}\item[{int}]{new\+Delay }\end{DoxyParamCaption})}
+
+Constructs \mbox{\hyperlink{classEcho}{Echo}} with new\+Delay. 
+\begin{DoxyParams}{Parameters}
+{\em new\+Delay,replaces} & delay. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEcho_af018d3d63e8c58e2d5d9b719558e6c0c}\label{classEcho_af018d3d63e8c58e2d5d9b719558e6c0c}} 
+\index{Echo@{Echo}!processBuffer@{processBuffer}}
+\index{processBuffer@{processBuffer}!Echo@{Echo}}
+\doxysubsubsection{\texorpdfstring{processBuffer()}{processBuffer()}}
+{\footnotesize\ttfamily void Echo\+::process\+Buffer (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+This function constructs the process\+Buffer function for echoing 8 bit audio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i,index} & for iteration.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classiProcessor_ad1a215189170decdf3f99b73494ce9dd}{i\+Processor}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Echo.\+h\item 
+Echo.\+cpp\end{DoxyCompactItemize}

@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['bit_5fdepth_7',['bit_depth',['../structwav_structure.html#a4d435f2180ede96704d54a57a96f257e',1,'wavStructure']]],
-  ['bitwav16_8',['BitWav16',['../class_bit_wav16.html',1,'']]],
-  ['bitwav32_9',['BitWav32',['../class_bit_wav32.html',1,'']]],
-  ['bitwav8_10',['BitWav8',['../class_bit_wav8.html',1,'']]],
-  ['byte_5frate_11',['byte_rate',['../structwav_structure.html#ad667e183f1150fd70aabf6eb2ccd4513',1,'wavStructure']]]
+  ['getbuffer_9',['getBuffer',['../classBitWav16.html#a10d6270c5d57891451b7aefea0fb8cf7',1,'BitWav16::getBuffer()'],['../classBitWav8.html#a9e0d8d23b2f5ad91db68b69be5a27132',1,'BitWav8::getBuffer()']]],
+  ['getbuffersize_10',['getBufferSize',['../classWavFile.html#aced9840645cf59cffc1c96f0d44575fe',1,'WavFile']]],
+  ['getmetadata_11',['getMetaData',['../classWavFile.html#acded047aac7b1edb475c420df64c8813',1,'WavFile']]]
 ];

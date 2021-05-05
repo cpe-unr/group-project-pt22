@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['normalizer_113',['Normalizer',['../class_normalizer.html',1,'']]]
+  ['normalizer_47',['Normalizer',['../classNormalizer.html',1,'']]]
 ];

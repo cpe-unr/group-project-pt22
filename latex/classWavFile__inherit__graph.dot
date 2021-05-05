@@ -1,0 +1,13 @@
+digraph "WavFile"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="WavFile",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="first class that is inherited from for the certain bit wav"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="BitWav16",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBitWav16.html",tooltip="inherits from the wavfile class"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="BitWav32",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBitWav32.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="BitWav8",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBitWav8.html",tooltip="inherits from the wavfile class"];
+}

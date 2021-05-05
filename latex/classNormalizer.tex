@@ -1,0 +1,78 @@
+\hypertarget{classNormalizer}{}\doxysection{Normalizer Class Reference}
+\label{classNormalizer}\index{Normalizer@{Normalizer}}
+
+
+{\ttfamily \#include $<$Normalizer.\+h$>$}
+
+
+
+Inheritance diagram for Normalizer\+:
+% FIG 0
+
+
+Collaboration diagram for Normalizer\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classNormalizer_af576151323854ff0d4d7e37255c397d1}\label{classNormalizer_af576151323854ff0d4d7e37255c397d1}} 
+\mbox{\hyperlink{classNormalizer_af576151323854ff0d4d7e37255c397d1}{Normalizer}} ()
+\begin{DoxyCompactList}\small\item\em Creates the class constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNormalizer_ab7b761d0c2804ac448ac2253897a2742}{Normalizer}} (int new\+N\+Percent)
+\item 
+\mbox{\Hypertarget{classNormalizer_a4f3bad3ee076db14dc1edcd82368eaba}\label{classNormalizer_a4f3bad3ee076db14dc1edcd82368eaba}} 
+void \mbox{\hyperlink{classNormalizer_a4f3bad3ee076db14dc1edcd82368eaba}{process\+Buffer}} (unsigned char $\ast$buffer, int buffer\+Size)
+\begin{DoxyCompactList}\small\item\em This function constructs the process\+Buffer function for an 8 bit Normalization. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNormalizer_a6f34cd09026f128e09dc306a952acc9a}\label{classNormalizer_a6f34cd09026f128e09dc306a952acc9a}} 
+void \mbox{\hyperlink{classNormalizer_a6f34cd09026f128e09dc306a952acc9a}{process\+Buffer}} (signed int $\ast$buffer, int buffer\+Size)
+\begin{DoxyCompactList}\small\item\em This function constructs the process\+Buffer function for a 16 bit Normalization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNormalizer_a6b3659f626fbbc9e55ff45e0e864961e}{process\+Buffer}} (signed short $\ast$buffer, int buffer\+Size)
+\begin{DoxyCompactList}\small\item\em This function constructs the process\+Buffer function for a 16 bit Normalization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+/$\ast$\+This class inherits from the \mbox{\hyperlink{classiProcessor}{i\+Processor}} class to override process\+Buffer. /$\ast$ The \mbox{\hyperlink{classNormalizer}{Normalizer}} Class takes audio and makes all of it louder by the same degree. /$\ast$
+\begin{DoxyParams}{Parameters}
+{\em n\+Percent,the} & percent of loudness that the maximum peak is compared to. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classNormalizer_ab7b761d0c2804ac448ac2253897a2742}\label{classNormalizer_ab7b761d0c2804ac448ac2253897a2742}} 
+\index{Normalizer@{Normalizer}!Normalizer@{Normalizer}}
+\index{Normalizer@{Normalizer}!Normalizer@{Normalizer}}
+\doxysubsubsection{\texorpdfstring{Normalizer()}{Normalizer()}}
+{\footnotesize\ttfamily Normalizer\+::\+Normalizer (\begin{DoxyParamCaption}\item[{int}]{new\+N\+Percent }\end{DoxyParamCaption})}
+
+Constructs \mbox{\hyperlink{classNormalizer}{Normalizer}}. 
+\begin{DoxyParams}{Parameters}
+{\em new\+N\+Percent,replaces} & n\+Percent. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classNormalizer_a6b3659f626fbbc9e55ff45e0e864961e}\label{classNormalizer_a6b3659f626fbbc9e55ff45e0e864961e}} 
+\index{Normalizer@{Normalizer}!processBuffer@{processBuffer}}
+\index{processBuffer@{processBuffer}!Normalizer@{Normalizer}}
+\doxysubsubsection{\texorpdfstring{processBuffer()}{processBuffer()}}
+{\footnotesize\ttfamily void Normalizer\+::process\+Buffer (\begin{DoxyParamCaption}\item[{signed short $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})}
+
+
+
+This function constructs the process\+Buffer function for a 16 bit Normalization. 
+
+/$\ast$
+\begin{DoxyParams}{Parameters}
+{\em i,index} & for iteration. /$\ast$\\
+\hline
+{\em max,maximum} & peak in the audio.\\
+\hline
+\end{DoxyParams}
+adds the normalization value to point in the audio file.
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Normalizer.\+h\item 
+Normalizer.\+cpp\end{DoxyCompactItemize}

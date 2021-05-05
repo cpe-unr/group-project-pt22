@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['wav_5fprocessor_116',['Wav_Processor',['../class_wav___processor.html',1,'']]],
-  ['wavfile_117',['WavFile',['../class_wav_file.html',1,'']]],
-  ['wavstructure_118',['wavStructure',['../structwav_structure.html',1,'']]]
+  ['wav_5fprocessor_50',['Wav_Processor',['../classWav__Processor.html',1,'']]],
+  ['wavfile_51',['WavFile',['../classWavFile.html',1,'']]],
+  ['wavstructure_52',['wavStructure',['../structwavStructure.html',1,'']]]
 ];

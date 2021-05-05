@@ -1,0 +1,54 @@
+\hypertarget{classiProcessor}{}\doxysection{i\+Processor Class Reference}
+\label{classiProcessor}\index{iProcessor@{iProcessor}}
+
+
+\mbox{\hyperlink{classiProcessor}{i\+Processor}} class is where modification classes inherit from.  
+
+
+
+
+{\ttfamily \#include $<$i\+Processor.\+h$>$}
+
+
+
+Inheritance diagram for i\+Processor\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classiProcessor_ad1a215189170decdf3f99b73494ce9dd}{process\+Buffer}} (unsigned char $\ast$buffer, int buffer\+Size)=0
+\item 
+\mbox{\Hypertarget{classiProcessor_a97fde47f74408d1100c6734d0a907517}\label{classiProcessor_a97fde47f74408d1100c6734d0a907517}} 
+virtual void {\bfseries process\+Buffer} (signed int $\ast$buffer, int buffer\+Size)=0
+\item 
+\mbox{\Hypertarget{classiProcessor_a333be09c9462352fe16a2c3ade5347ba}\label{classiProcessor_a333be09c9462352fe16a2c3ade5347ba}} 
+virtual void {\bfseries process\+Buffer} (signed short int $\ast$buffer, int buffer\+Size)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classiProcessor}{i\+Processor}} class is where modification classes inherit from. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classiProcessor_ad1a215189170decdf3f99b73494ce9dd}\label{classiProcessor_ad1a215189170decdf3f99b73494ce9dd}} 
+\index{iProcessor@{iProcessor}!processBuffer@{processBuffer}}
+\index{processBuffer@{processBuffer}!iProcessor@{iProcessor}}
+\doxysubsubsection{\texorpdfstring{processBuffer()}{processBuffer()}}
+{\footnotesize\ttfamily virtual void i\+Processor\+::process\+Buffer (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+These virtual void functions are the same, save for the data type of buffer in each. 
+\begin{DoxyParams}{Parameters}
+{\em buffer} & The array which is holding the wave audio data. \\
+\hline
+{\em buffer\+Size} & The size of the buffer above. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classNormalizer_a4f3bad3ee076db14dc1edcd82368eaba}{Normalizer}}, \mbox{\hyperlink{classEcho_af018d3d63e8c58e2d5d9b719558e6c0c}{Echo}}, and \mbox{\hyperlink{classLimiter_a226a4a5c3890a5dfbe35220595c3df2b}{Limiter}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+i\+Processor.\+h\end{DoxyCompactItemize}

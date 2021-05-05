@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['info_41',['info',['../structmeta_data_header.html#abb6123d0086f9209b05293b55599bf07',1,'metaDataHeader']]],
-  ['iprocessor_42',['iProcessor',['../classi_processor.html',1,'']]],
-  ['iprocessor_2eh_43',['iProcessor.h',['../i_processor_8h.html',1,'']]]
+  ['processbuffer_21',['processBuffer',['../classEcho.html#af018d3d63e8c58e2d5d9b719558e6c0c',1,'Echo::processBuffer(unsigned char *buffer, int bufferSize)'],['../classEcho.html#ae8e740f76792ef3ae04f4f7472cc4bf7',1,'Echo::processBuffer(signed int *buffer, int bufferSize)'],['../classEcho.html#ac67ccd8a2fc8b50db1259a60169c47d7',1,'Echo::processBuffer(signed short *buffer, int bufferSize)'],['../classiProcessor.html#ad1a215189170decdf3f99b73494ce9dd',1,'iProcessor::processBuffer()'],['../classLimiter.html#a226a4a5c3890a5dfbe35220595c3df2b',1,'Limiter::processBuffer(unsigned char *buffer, int bufferSize)'],['../classLimiter.html#a90d620c3c82afb4d3cda09eeb7bbdf9d',1,'Limiter::processBuffer(signed int *buffer, int bufferSize)'],['../classLimiter.html#a567eae08a9ea36fc2ecf15e4f5dcf052',1,'Limiter::processBuffer(signed short *buffer, int bufferSize)'],['../classNormalizer.html#a4f3bad3ee076db14dc1edcd82368eaba',1,'Normalizer::processBuffer(unsigned char *buffer, int bufferSize)'],['../classNormalizer.html#a6f34cd09026f128e09dc306a952acc9a',1,'Normalizer::processBuffer(signed int *buffer, int bufferSize)'],['../classNormalizer.html#a6b3659f626fbbc9e55ff45e0e864961e',1,'Normalizer::processBuffer(signed short *buffer, int bufferSize)']]],
+  ['puimanager_22',['PUIManager',['../classPUIManager.html',1,'']]]
 ];

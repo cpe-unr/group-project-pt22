@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['audio_5fformat_192',['audio_format',['../structwav_structure.html#a74623ba221e41a0dd1a88fdf20c72c87',1,'wavStructure']]]
+  ['waveheader_78',['waveHeader',['../classWavFile.html#aed542422d0141a457e2b0a06514977ba',1,'WavFile']]]
 ];
